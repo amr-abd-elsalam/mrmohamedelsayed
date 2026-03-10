@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <!-- SEO — injected at runtime by courses-app.js from COURSE_DATA -->
+  <title id="page-title">تصفح الكورسات — مستر محمد السيد</title>
+  <meta name="description"
+        id="page-desc"
+        content="تصفح كورسات الأحياء للصف الثالث الثانوي: الدعامة والحركة، التكاثر، التنسيق الهرموني والعصبي، والبيولوجيا الجزيئية. فلتر حسب الفصل أو المستوى أو التقييم.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="page-canonical" href="https://mrmohamedelsayed.com/course/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         id="og-url"       content="https://mrmohamedelsayed.com/course/">
+  <meta property="og:title"       id="og-title"     content="تصفح الكورسات — مستر محمد السيد">
+  <meta property="og:description" id="og-desc"      content="تصفح كورسات الأحياء للثانوية العامة. فلتر حسب الفصل أو المستوى وابدأ التعلم اليوم.">
+  <meta property="og:image"       id="og-image"     content="https://mrmohamedelsayed.com/assets/img/og-image.png">
+  <meta property="og:site_name"   id="og-site-name" content="مستر محمد السيد">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       id="tw-title" content="تصفح الكورسات — مستر محمد السيد">
+  <meta name="twitter:description" id="tw-desc"  content="تصفح كورسات الأحياء للثانوية العامة. فلتر حسب الفصل أو المستوى وابدأ التعلم اليوم.">
+  <meta name="twitter:image"       id="tw-image" content="https://mrmohamedelsayed.com/assets/img/og-image.png">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ar" id="hreflang-ar" href="https://mrmohamedelsayed.com/course/">
+
+  <!-- CSP — font-src 'self' for Inter self-hosted -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none';
+                 script-src 'self';
+                 style-src 'self' https://cdn.jsdelivr.net;
+                 font-src 'self' https://cdn.jsdelivr.net;
+                 img-src 'self' data:;
+                 connect-src 'self';
+                 form-action 'none';">
+
+  <!-- JSON-LD injected by courses-app.js -->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../assets/img/fav180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/fav32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/fav32D.png"
+        media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/fav16.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/fav16D.png"
+        media="(prefers-color-scheme: dark)">
+
+  <!-- Preload critical font — path from /course/ -->
+  <link rel="preload" href="../assets/fonts/inter-variable.woff2"
+        as="font" type="font/woff2" crossorigin="anonymous">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/courses.css">
+</head>
+
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">تخطي إلى المحتوى</a>
+
+  <main id="main-content" class="page-container" dir="ltr">
+
+    <!-- ── Page Header ── -->
+    <header class="page-header">
+      <h1 class="page-title">تصفح الكورسات</h1>
+      <nav class="breadcrumb-nav" aria-label="مسار التنقل">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="../index.html">الرئيسية</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            <span>الكورسات</span>
+          </li>
+        </ol>
+      </nav>
+    </header>
+
+    <!-- ── Layout ── -->
+    <div class="row g-4">
+
+      <!-- Sidebar — desktop -->
+      <aside id="desktop-filters-slot"
+             class="col-lg-3 d-none d-lg-block sidebar"
+             aria-label="فلاتر الكورسات">
+      </aside>
+
+      <!-- Content area -->
+      <div id="content-area" class="col-lg-9">
+
+        <!-- Toolbar -->
+        <div class="toolbar" role="search">
+          <p id="results-text"
+             class="results-text mb-0"
+             aria-live="polite"
+             aria-atomic="true">جارٍ التحميل</p>
+
+          <div class="d-flex align-items-center gap-2">
+            <label class="visually-hidden" for="search-input">
+              البحث في الكورسات
+            </label>
+            <input id="search-input"
+                   class="search-input"
+                   type="search"
+                   placeholder="البحث في الكورسات…"
+                   autocomplete="off"
+                   aria-label="البحث في الكورسات">
+
+            <div class="dropdown">
+              <button id="sort-dropdown"
+                      class="btn sort-toggle dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      aria-label="ترتيب الكورسات">
+                <span class="d-none d-sm-inline sort-label">متوسط التقييمات</span>
+                <i class="d-sm-none bi bi-sort-down" aria-hidden="true"></i>
+              </button>
+              <ul id="sort-dropdown-menu"
+                  class="dropdown-menu sort-menu dropdown-menu-end"
+                  role="listbox"
+                  aria-label="خيارات الترتيب">
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Courses grid -->
+        <h2 class="visually-hidden" id="courses-list-heading">نتائج الكورسات</h2>
+        <div id="courses-grid"
+             class="row g-4"
+             aria-live="polite"
+             aria-atomic="true">
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="صفحات الكورسات">
+          <ul id="pagination-bar"
+              class="pagination justify-content-center mt-4 gap-2">
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+
+  </main><!-- /#main-content -->
+
+
+  <!-- ── Mobile Offcanvas filters ── -->
+  <div id="offcanvas-filters"
+       class="offcanvas offcanvas-start mobile-offcanvas"
+       tabindex="-1"
+       aria-labelledby="offcanvas-title">
+    <div class="offcanvas-header">
+      <h2 id="offcanvas-title" class="offcanvas-title">الفلاتر</h2>
+      <button class="btn-close"
+              type="button"
+              data-bs-dismiss="offcanvas"
+              aria-label="إغلاق الفلاتر"></button>
+    </div>
+    <div id="mobile-filters-slot" class="offcanvas-body"></div>
+  </div>
+
+
+  <!-- ── FAB — mobile filter trigger ── -->
+  <button id="floating-filter-btn"
+          class="d-lg-none floating-fab"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvas-filters"
+          aria-label="فتح فلاتر الكورسات"
+          aria-controls="offcanvas-filters">
+    <i class="bi bi-funnel-fill" aria-hidden="true"></i>
+  </button>
+
+
+  <!-- ── Toast Container ── -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3"
+       aria-live="polite"
+       aria-atomic="true">
+  </div>
+
+
+  <!-- Scripts — deferred, non-blocking -->
+  <script src="../assets/bootstrap/js/bootstrap.min.js"  defer></script>
+  <script src="../assets/js/utils.js"                    defer></script>
+  <script src="../assets/js/courses-data.js"             defer></script>
+  <script src="../assets/js/courses-app.js"              defer></script>
+  <script src="../assets/js/ratings-system.js"           defer></script>
+
+</body>
+</html>

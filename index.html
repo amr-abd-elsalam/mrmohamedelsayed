@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <!--
+    SEO: title + description + canonical + OG + Twitter
+    Static fallback values here — home-app.js injects
+    final values from COURSE_DATA at runtime.
+  -->
+  <title id="page-title">مستر محمد السيد — أستاذ الأحياء للثانوية العامة</title>
+  <meta name="description"
+        id="page-desc"
+        content="منصة مستر محمد السيد لتعليم مادة الأحياء لطلاب الثانوية العامة في مصر. شرح تفصيلي لكل فصول المنهج مع رسومات توضيحية محلولة وأسئلة امتحانات سابقة.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" id="page-canonical" href="https://mrmohamedelsayed.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         id="og-url"         content="https://mrmohamedelsayed.com/">
+  <meta property="og:title"       id="og-title"       content="مستر محمد السيد — أستاذ الأحياء للثانوية العامة">
+  <meta property="og:description" id="og-desc"        content="شرح أحياء الثانوية العامة بالتفصيل مع أسئلة محلولة ودعم مباشر.">
+  <meta property="og:image"       id="og-image"       content="https://mrmohamedelsayed.com/assets/img/og-image.png">
+  <meta property="og:site_name"   id="og-site-name"   content="مستر محمد السيد">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       id="tw-title"  content="مستر محمد السيد — أستاذ الأحياء للثانوية العامة">
+  <meta name="twitter:description" id="tw-desc"   content="شرح أحياء الثانوية العامة بالتفصيل مع أسئلة محلولة ودعم مباشر.">
+  <meta name="twitter:image"       id="tw-image"  content="https://mrmohamedelsayed.com/assets/img/og-image.png">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ar" id="hreflang-ar" href="https://mrmohamedelsayed.com/">
+
+  <!-- CSP -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none';
+                 script-src 'self';
+                 style-src 'self' https://cdn.jsdelivr.net;
+                 font-src 'self' https://cdn.jsdelivr.net;
+                 img-src 'self' data:;
+                 connect-src 'self';
+                 form-action 'none';">
+
+  <!-- JSON-LD — injected by home-app.js -->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="assets/img/fav180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/fav32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/fav32D.png"
+        media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/fav16.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/fav16D.png"
+        media="(prefers-color-scheme: dark)">
+
+  <!-- Preload critical font -->
+  <link rel="preload" href="assets/fonts/inter-variable.woff2"
+        as="font" type="font/woff2" crossorigin="anonymous">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/courses.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link">تخطي إلى المحتوى</a>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar navbar-expand-lg home-navbar sticky-top"
+       aria-label="التنقل الرئيسي">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand home-brand" href="./index.html">
+        <span class="brand-icon" aria-hidden="true">
+          <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+        </span>
+        <span class="brand-text" id="nav-brand-name"></span>
+      </a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false"
+              aria-label="تبديل القائمة">
+        <i class="bi bi-list fs-4 icon-em-500" aria-hidden="true"></i>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html"
+               aria-current="page" data-nav-page="home">الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./course/"
+               data-nav-page="courses">الكورسات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./about.html"
+               data-nav-page="about">عن المدرس</a>
+          </li>
+          <li class="nav-item me-lg-2">
+            <a class="btn home-btn-outline btn-sm px-3" href="./course/">
+              <i class="bi bi-grid-fill ms-1" aria-hidden="true"></i>تصفح الكل
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ─── HERO ─── -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+      <div class="hero-glow"    aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="row justify-content-center text-center">
+          <div class="col-12 col-lg-9 col-xl-8">
+
+            <div class="hero-badge mb-4" aria-hidden="true">
+              <i class="bi bi-stars ms-2" aria-hidden="true"></i>أحياء الثانوية العامة — شرح تفصيلي
+            </div>
+
+            <h1 class="hero-title mb-4" id="hero-heading">
+              <span class="hero-title-line"     id="hero-title-line1"></span><br>
+              <span class="hero-title-gradient" id="hero-title-gradient"></span>
+            </h1>
+
+            <p class="hero-subtitle mb-5" id="hero-subtitle"></p>
+
+            <div class="hero-actions d-flex flex-wrap gap-3 justify-content-center">
+              <a href="./course/" class="btn home-btn-primary hero-btn-main">
+                <i class="bi bi-grid-fill ms-2" aria-hidden="true"></i>تصفح الكورسات
+              </a>
+              <a href="./about.html" class="btn home-btn-ghost hero-btn-sec">
+                <i class="bi bi-info-circle ms-2" aria-hidden="true"></i>عن المدرس
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- wave divider -->
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"
+                fill="var(--bg-primary)"/>
+        </svg>
+      </div>
+    </section>
+
+
+    <!-- ─── STATS BAR ─── -->
+    <section class="stats-section" aria-label="إحصائيات المنصة">
+      <div class="container">
+        <div class="stats-bar" id="stats-bar" role="list">
+          <!-- built by home-app.js -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── FEATURED COURSES ─── -->
+    <section class="home-section featured-section"
+             aria-labelledby="featured-heading">
+      <div class="container">
+
+        <div class="section-header text-center mb-5">
+          <div class="section-badge mb-3" aria-hidden="true">
+            <i class="bi bi-fire ms-2" aria-hidden="true"></i>أحدث الكورسات
+          </div>
+          <h2 class="section-title" id="featured-heading">كورسات مميزة</h2>
+          <p class="section-subtitle">
+            كورسات مختارة لمساعدتك في فهم المنهج والاستعداد للامتحان
+          </p>
+        </div>
+
+        <div class="row g-4" id="featured-courses-grid" aria-live="polite">
+          <!-- built by home-app.js -->
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="./course/" class="btn home-btn-outline px-5">
+            <i class="bi bi-grid ms-2" aria-hidden="true"></i>عرض كل الكورسات
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ─── CATEGORIES ─── -->
+    <section class="home-section categories-section"
+             aria-labelledby="categories-heading">
+      <div class="container">
+
+        <div class="section-header text-center mb-5">
+          <div class="section-badge mb-3" aria-hidden="true">
+            <i class="bi bi-bookmark-star ms-2" aria-hidden="true"></i>حسب الفصل
+          </div>
+          <h2 class="section-title" id="categories-heading">تصفح حسب الفصل</h2>
+          <p class="section-subtitle">اختار الفصل اللي عايز تذاكره</p>
+        </div>
+
+        <div class="row g-3 justify-content-center"
+             id="categories-grid" aria-live="polite">
+          <!-- built by home-app.js -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ─── HOW IT WORKS ─── -->
+    <section class="home-section how-section"
+             aria-labelledby="how-heading">
+      <div class="container">
+
+        <div class="section-header text-center mb-5">
+          <div class="section-badge mb-3" aria-hidden="true">
+            <i class="bi bi-lightning-charge ms-2" aria-hidden="true"></i>خطوات بسيطة
+          </div>
+          <h2 class="section-title" id="how-heading">إزاي تبدأ؟</h2>
+          <p class="section-subtitle">٣ خطوات وتبدأ تذاكر</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+          <!-- Step 1 -->
+          <div class="col-12 col-md-4">
+            <article class="how-card h-100">
+              <div class="how-step-number" aria-hidden="true">01</div>
+              <div class="how-icon mb-3" aria-hidden="true">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </div>
+              <h3 class="how-title">اختار الكورس</h3>
+              <p class="how-desc">
+                تصفح الكورسات المتاحة واختار الفصل اللي عايز تذاكره.
+                كل كورس فيه شرح تفصيلي ورسومات وأسئلة محلولة.
+              </p>
+            </article>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="col-12 col-md-4">
+            <article class="how-card how-card--accent h-100">
+              <div class="how-step-number" aria-hidden="true">02</div>
+              <div class="how-icon mb-3" aria-hidden="true">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i>
+              </div>
+              <h3 class="how-title">اشتري عبر واتساب</h3>
+              <p class="how-desc">
+                اضغط «اشتري الآن» في صفحة الكورس وهيتفتحلك واتساب
+                برسالة جاهزة. بعد تأكيد الدفع هتوصلك بيانات الدخول.
+              </p>
+            </article>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="col-12 col-md-4">
+            <article class="how-card h-100">
+              <div class="how-step-number" aria-hidden="true">03</div>
+              <div class="how-icon mb-3" aria-hidden="true">
+                <i class="bi bi-play-circle-fill" aria-hidden="true"></i>
+              </div>
+              <h3 class="how-title">ابدأ المذاكرة</h3>
+              <p class="how-desc">
+                بعد الدفع هتوصلك بيانات الدخول وتقدر تدخل الكورس فوراً
+                من أي جهاز — وصول مدى الحياة ودعم مباشر من المدرس.
+              </p>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ─── CTA ─── -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container cta-content text-center">
+
+        <div class="section-badge mb-4" aria-hidden="true">
+          <i class="bi bi-rocket-takeoff ms-2" aria-hidden="true"></i>ابدأ النهارده
+        </div>
+        <h2 class="cta-title mb-3" id="cta-heading">
+          مستعد تفهم الأحياء صح؟
+        </h2>
+        <p class="cta-subtitle mb-5">
+          كورسات شاملة لكل فصول المنهج — شرح مبسط، رسومات محلولة،
+          وأسئلة امتحانات. ابدأ النهارده واستعد لامتحان الثانوية العامة.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="./course/" class="btn home-btn-primary cta-btn-main">
+            <i class="bi bi-grid-fill ms-2" aria-hidden="true"></i>تصفح الكورسات
+          </a>
+          <a id="cta-whatsapp-btn" href="#" target="_blank"
+             rel="noopener noreferrer"
+             class="btn home-btn-whatsapp cta-btn-wa"
+             aria-label="تواصل معانا على واتساب">
+            <i class="bi bi-whatsapp ms-2" aria-hidden="true"></i>تواصل على واتساب
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- /#main-content -->
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="home-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="row g-4 footer-top">
+
+        <!-- Brand col -->
+        <div class="col-12 col-md-4">
+          <div class="footer-brand mb-3">
+            <i class="bi bi-mortarboard-fill ms-2 icon-em-500" aria-hidden="true"></i>
+            <span id="footer-brand-name"></span>
+          </div>
+          <p class="footer-tagline">
+            شرح مادة الأحياء للثانوية العامة بأسلوب مبسط وتفصيلي.
+            وصول مدى الحياة ودعم مباشر من المدرس.
+          </p>
+          <a id="footer-whatsapp-link" href="#" target="_blank"
+             rel="noopener noreferrer" class="footer-social-link"
+             aria-label="تواصل معانا على واتساب">
+            <i class="bi bi-whatsapp ms-1" aria-hidden="true"></i>واتساب
+          </a>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-6 col-md-2 offset-md-1">
+          <p class="footer-col-title">المنصة</p>
+          <ul class="footer-links">
+            <li><a href="./index.html">الرئيسية</a></li>
+            <li><a href="./course/">كل الكورسات</a></li>
+            <li><a href="./about.html">عن المدرس</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories — built dynamically -->
+        <div class="col-6 col-md-2">
+          <p class="footer-col-title">الفصول</p>
+          <ul class="footer-links" id="footer-categories">
+            <!-- built by home-app.js -->
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="col-6 col-md-2">
+          <p class="footer-col-title">قانوني</p>
+          <ul class="footer-links">
+            <li><a href="./legal/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="./legal/terms.html">شروط الاستخدام</a></li>
+          </ul>
+        </div>
+
+      </div><!-- /.row -->
+
+      <!-- Footer bottom -->
+      <div class="footer-bottom">
+        <span id="footer-copyright"></span>
+        <span class="footer-divider" aria-hidden="true">·</span>
+        <a href="./legal/privacy.html">الخصوصية</a>
+        <span class="footer-divider" aria-hidden="true">·</span>
+        <a href="./legal/terms.html">الشروط</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts — deferred, non-blocking -->
+  <script src="assets/bootstrap/js/bootstrap.min.js" defer></script>
+  <script src="assets/js/utils.js"         defer></script>
+  <script src="assets/js/courses-data.js"  defer></script>
+  <script src="assets/js/home-app.js"      defer></script>
+
+</body>
+
+</html>
