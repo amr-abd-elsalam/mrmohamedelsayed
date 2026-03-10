@@ -601,12 +601,11 @@
     if (!hasDiscount) {
       return U.el('div', {
         className: 'price-display',
-        style:     { direction: 'ltr' },
-        aria:      { label: 'Price: $' + currentPrice.toFixed(2) }
+        aria:      { label: 'السعر: ' + currentPrice.toFixed(0) + ' ج.م' }
       }, [
         U.el('span', {
           className:   'price-current',
-          textContent: '$' + currentPrice.toFixed(2),
+          textContent: currentPrice.toFixed(0) + ' ج.م',
           aria:        { hidden: 'true' }
         })
       ]);
@@ -614,34 +613,33 @@
 
     /* — Paid, with discount — */
     var discountPercent = Math.round((1 - currentPrice / originalPrice) * 100);
-    var savedAmount     = (originalPrice - currentPrice).toFixed(2);
+    var savedAmount     = (originalPrice - currentPrice).toFixed(0);
 
-    var ariaText = 'Original price $' + originalPrice.toFixed(2) +
-                   ', now $' + currentPrice.toFixed(2) +
-                   ', ' + discountPercent + '% discount, you save $' + savedAmount;
+    var ariaText = 'السعر الأصلي ' + originalPrice.toFixed(0) + ' ج.م' +
+                   '، الآن ' + currentPrice.toFixed(0) + ' ج.م' +
+                   '، خصم ' + discountPercent + '%، وفرت ' + savedAmount + ' ج.م';
 
     return U.el('div', {
       className: 'price-display',
-      style:     { direction: 'ltr' },
       aria:      { label: ariaText }
     }, [
       U.el('span', {
         className:   'price-original',
-        textContent: '$' + originalPrice.toFixed(2),
+        textContent: originalPrice.toFixed(0) + ' ج.م',
         aria:        { hidden: 'true' }
       }),
       U.el('span', {
         className:   'price-current',
-        textContent: '$' + currentPrice.toFixed(2),
+        textContent: currentPrice.toFixed(0) + ' ج.م',
         aria:        { hidden: 'true' }
       }),
       U.el('span', {
         className: 'price-discount',
         aria:      { hidden: 'true' }
       }, [
-        discountPercent + '% OFF',
+        'خصم ' + discountPercent + '%',
         U.el('span', { className: 'price-discount-dot', textContent: '\u00B7' }),
-        'Save $' + savedAmount
+        'وفر ' + savedAmount + ' ج.م'
       ])
     ]);
   }
@@ -1484,5 +1482,6 @@
   } else {
     init();
   }
+
 
 })();
