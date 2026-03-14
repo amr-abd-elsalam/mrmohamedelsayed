@@ -4,12 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <style>
-    [dir="rtl"] .accordion-button::after {
-    margin-right: auto;
-    margin-left: 0;
-    }
-  </style>
 
   <!--
     SEO: title + description + canonical + OG + Twitter
@@ -46,7 +40,7 @@
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'none';
                  script-src 'self';
-                 style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+                 style-src 'self' https://cdn.jsdelivr.net;
                  font-src 'self' https://cdn.jsdelivr.net;
                  img-src 'self' data:;
                  connect-src 'self';
@@ -85,7 +79,7 @@
   <a href="#app" class="skip-link">تخطي إلى المحتوى</a>
 
   <!-- App container — all content built dynamically by course-details-app.js -->
-  <main id="app" aria-label="تفاصيل الكورس">
+  <main id="app"  aria-label="تفاصيل الكورس">
     <noscript>
       <div style="text-align:center; padding:4rem 1rem; color:#81c784;">
         <p style="font-size:1.2rem; font-weight:700;">
