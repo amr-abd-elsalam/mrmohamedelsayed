@@ -96,11 +96,23 @@ var Utils = (function () {
 
   function formatNumber(n) { return (n == null || isNaN(n)) ? '0' : Number(n).toLocaleString('en-US'); }
 
+  /**
+   * Converts Latin digits (0-9) to Eastern Arabic digits (٠-٩)
+   * and formats with locale-aware separators.
+   * @param {number|string} n — the number to format
+   * @returns {string} formatted string with Eastern Arabic digits
+   */
+  function formatNumberAr(n) {
+    if (n == null || isNaN(n)) return '٠';
+    var formatted = Number(n).toLocaleString('ar-EG');
+    return formatted;
+  }
+
   return Object.freeze({
     escapeHtml: escapeHtml, escapeAttr: escapeAttr, sanitizeUrl: sanitizeUrl,
     el: el, buildSafeLink: buildSafeLink, showToast: showToast,
     qs: qs, qsa: qsa, debounce: debounce, throttle: throttle,
-    announce: announce, formatNumber: formatNumber
+    announce: announce, formatNumber: formatNumber, formatNumberAr: formatNumberAr
   });
 })();
 

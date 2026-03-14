@@ -204,8 +204,8 @@ var RatingSystem = (function () {
       className: 'stars-container' + (isInteractive ? ' stars-interactive' : ' stars-display'),
       role: isInteractive ? 'radiogroup' : 'img',
       aria: isInteractive
-        ? { label: 'Rate this course from 1 to 5 stars' }
-        : { label: 'Rating: ' + rating.toFixed(1) + ' out of 5 stars' }
+        ? { label: 'قيّم الكورس من ١ لـ ٥ نجوم' }
+        : { label: 'التقييم: ' + rating.toFixed(1) + ' من ٥ نجوم' }
     });
 
     for (var i = 1; i <= CONFIG.MAX_RATING; i++) {
@@ -217,7 +217,7 @@ var RatingSystem = (function () {
           type: 'button',
           className: 'star-btn',
           dataset: { value: String(i) },
-          aria: { label: i + ' star' + (i > 1 ? 's' : '') },
+          aria: { label: U.formatNumberAr(i) + (i === 1 ? ' نجمة' : ' نجوم') },
           role: 'radio',
           tabindex: i === 1 ? '0' : '-1'
         }, [

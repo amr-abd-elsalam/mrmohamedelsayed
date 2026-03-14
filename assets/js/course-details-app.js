@@ -14,19 +14,19 @@
 
   /* ── Constants ── */
 
-  var BRAND_NAME = DATA.BRAND_NAME || 'Ai8V';
-  var DOMAIN     = DATA.DOMAIN     || 'ai8v.com';
+  var BRAND_NAME = DATA.BRAND_NAME || 'مستر محمد السيد';
+  var DOMAIN     = DATA.DOMAIN     || 'mrmohamedelsayed.com';
 
   /* ── Chat Config (white-label via COURSE_DATA.META) ── */
 
   var CHAT_CONFIG = {
-    botName:        (DATA.META && DATA.META.chatBotName)        || '\u0645\u0633\u0627\u0639\u062F \u0627\u0644\u0643\u0648\u0631\u0633',
-    welcomeMessage: (DATA.META && DATA.META.chatWelcomeMessage) || '\u0645\u0631\u062D\u0628\u0627\u064B! \u0623\u0646\u0627 \u0647\u0646\u0627 \u0639\u0634\u0627\u0646 \u0623\u0633\u0627\u0639\u062F\u0643 \u0628\u0623\u064A \u0633\u0624\u0627\u0644 \u0639\u0646 \u0627\u0644\u0643\u0648\u0631\u0633. \u0627\u0633\u0623\u0644\u0646\u064A \u0623\u064A \u062D\u0627\u062C\u0629!',
-    placeholder:    (DATA.META && DATA.META.chatPlaceholder)    || '\u0627\u0643\u062A\u0628 \u0633\u0624\u0627\u0644\u0643 \u0647\u0646\u0627...',
-    errorMessage:   (DATA.META && DATA.META.chatErrorMessage)   || '\u062D\u0635\u0644 \u0645\u0634\u0643\u0644\u0629 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644. \u062C\u0631\u0651\u0628 \u062A\u0627\u0646\u064A.',
+    botName:        (DATA.META && DATA.META.chatBotName)        || 'مساعد الكورس',
+    welcomeMessage: (DATA.META && DATA.META.chatWelcomeMessage) || 'مرحباً! أنا هنا عشان أساعدك بأي سؤال عن الكورس. اسألني أي حاجة!',
+    placeholder:    (DATA.META && DATA.META.chatPlaceholder)    || 'اكتب سؤالك هنا...',
+    errorMessage:   (DATA.META && DATA.META.chatErrorMessage)   || 'حصل مشكلة في الاتصال. جرّب تاني.',
     maxMessageLen:  500,
     maxHistory:     20,
-    storagePrefix:  'ai8v_chat_'
+    storagePrefix:  'mrelsayed_chat_'
   };
 
   /* ── Chat State ── */
@@ -38,12 +38,6 @@
 
   /* ── Course Lookup ── */
 
-  /**
-   * Reads the course ID from the URL query string (?id=N).
-   * Validates: not empty, digits only, value >= 1.
-   *
-   * @returns {number|null} the course ID or null if invalid
-   */
   function getCourseIdFromURL() {
     var params  = new URLSearchParams(window.location.search);
     var raw     = params.get('id');
@@ -54,12 +48,6 @@
     return id >= 1 ? id : null;
   }
 
-  /**
-   * Finds a course object by its numeric ID.
-   *
-   * @param {number} id — the course ID to find
-   * @returns {Object|null} the course object or null
-   */
   function findCourse(id) {
     for (var i = 0; i < DATA.courses.length; i++) {
       if (DATA.courses[i].id === id) return DATA.courses[i];
@@ -69,14 +57,6 @@
 
   /* ── SEO Injection ── */
 
-  /**
-   * Injects all SEO metadata for the course: title, meta tags,
-   * canonical, OG, Twitter Card, hreflang, and Course JSON-LD.
-   * The Course schema does NOT include aggregateRating initially —
-   * it is added asynchronously by addRatingToSchema().
-   *
-   * @param {Object} course — the course data object
-   */
   function injectSEO(course) {
     var brand    = DATA.BRAND_NAME;
     var domain   = DATA.DOMAIN;
@@ -117,7 +97,7 @@
       if (el) el.setAttribute('content', twMap[id]);
     });
 
-    var hreflang = document.getElementById('hreflang-en');
+    var hreflang = document.getElementById('hreflang-ar') || document.getElementById('hreflang-en');
     if (hreflang) hreflang.setAttribute('href', pageUrl);
 
     var schema = {
@@ -132,11 +112,11 @@
         'url':   base
       },
       'educationalLevel': course.level,
-      'inLanguage':       course.language || 'en',
+      'inLanguage':       course.language || 'ar',
       'offers': {
         '@type':        'Offer',
         'price':        course.price,
-        'priceCurrency': 'USD',
+        'priceCurrency': 'EGP',
         'availability': 'https://schema.org/InStock'
       }
     };
@@ -150,10 +130,6 @@
 
   /* ── noindex for missing courses ── */
 
-  /**
-   * Sets the robots meta tag to noindex/nofollow for courses
-   * that do not exist.
-   */
   function setNoIndex() {
     var el = document.querySelector('meta[name="robots"]');
     if (el) {
@@ -168,12 +144,6 @@
 
   /* ── JSON-LD (BreadcrumbList + FAQPage) ── */
 
-  /**
-   * Injects BreadcrumbList and FAQPage JSON-LD schemas.
-   * Uses canonical URLs constructed from DATA.DOMAIN.
-   *
-   * @param {Object} course — the course data object
-   */
   function buildSchema(course) {
     var base    = 'https://' + DATA.DOMAIN;
     var pageUrl = base + '/course/course-details/?id=' + course.id;
@@ -184,9 +154,9 @@
       '@type':      'BreadcrumbList',
       'itemListElement': [
         { '@type': 'ListItem', 'position': 1,
-          'name': 'Home',    'item': base + '/' },
+          'name': 'الرئيسية', 'item': base + '/' },
         { '@type': 'ListItem', 'position': 2,
-          'name': 'Courses', 'item': base + '/course/' },
+          'name': 'الكورسات', 'item': base + '/course/' },
         { '@type': 'ListItem', 'position': 3,
           'name': course.title, 'item': pageUrl }
       ]
@@ -215,13 +185,6 @@
     });
   }
 
-  /**
-   * Adds aggregateRating to the existing Course JSON-LD schema.
-   * Called asynchronously after live rating data arrives.
-   *
-   * @param {number} average — the average rating value
-   * @param {number} count — the total number of ratings
-   */
   function addRatingToSchema(average, count) {
     var el = document.getElementById('jsonld-seo-course');
     if (!el) return;
@@ -240,45 +203,49 @@
 
   /* ── WhatsApp Link ── */
 
-  /**
-   * Builds a WhatsApp purchase link for the given course.
-   *
-   * @param {Object} course — the course data object
-   * @returns {string} the wa.me URL with pre-filled message
-   */
   function buildWhatsAppLink(course) {
     var phone   = DATA.WHATSAPP_NUMBER || '';
     var price   = course.price > 0
-      ? '$' + course.price.toFixed(2)
-      : 'Free';
-    var message = 'Hello, I want to purchase the course "' +
-                  course.title + '" \u2014 Price: ' + price;
+      ? U.formatNumberAr(course.price) + ' ج.م'
+      : 'مجاني';
+    var message = 'مرحباً، أريد شراء كورس "' +
+                  course.title + '" \u2014 السعر: ' + price;
     return 'https://wa.me/' + phone +
            '?text=' + encodeURIComponent(message);
   }
 
+  /* ── Format helpers ── */
+
+  function _formatPrice(price) {
+    if (parseFloat(price) === 0) return 'مجاني';
+    return U.formatNumberAr(price) + ' ج.م';
+  }
+
+  function _formatDate(dateStr) {
+    try {
+      return new Date(dateStr).toLocaleDateString('ar-EG', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    } catch (e) { return dateStr; }
+  }
+
   /* ── Error Page ── */
 
-  /**
-   * Renders a "Course Not Found" error page inside the container.
-   *
-   * @param {HTMLElement} container — the parent element (#app or body)
-   */
   function renderError(container) {
-    document.title = 'Course Not Found | ' + BRAND_NAME;
+    document.title = 'الكورس غير موجود | ' + BRAND_NAME;
     setNoIndex();
     container.appendChild(
       U.el('div', { className: 'error-container' }, [
         U.el('i',  { className: 'bi bi-exclamation-triangle error-icon',
                      aria: { hidden: 'true' } }),
         U.el('h1', { className: 'error-title',
-                     textContent: 'Course Not Found' }),
+                     textContent: 'الكورس غير موجود' }),
         U.el('p',  { className: 'error-text',
-                     textContent: 'The course you are looking for does not exist.' }),
+                     textContent: 'الكورس اللي بتدور عليه مش موجود. ممكن يكون اتحذف أو الرابط غلط.' }),
         U.el('a',  { className: 'error-btn', href: '../index.html' }, [
-          U.el('i', { className: 'bi bi-arrow-left',
+          U.el('i', { className: 'bi bi-arrow-right',
                       aria: { hidden: 'true' } }),
-          'Browse Courses'
+          'تصفح الكورسات'
         ])
       ])
     );
@@ -286,21 +253,15 @@
 
   /* ── Breadcrumb ── */
 
-  /**
-   * Builds the breadcrumb navigation for the course details page.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the <nav> breadcrumb element
-   */
   function buildBreadcrumb(course) {
     var ol = U.el('ol', { className: 'breadcrumb' });
 
     var li1 = U.el('li', { className: 'breadcrumb-item' });
-    li1.appendChild(U.el('a', { href: '../../index.html', textContent: 'Home' }));
+    li1.appendChild(U.el('a', { href: '../../index.html', textContent: 'الرئيسية' }));
     ol.appendChild(li1);
 
     var li2 = U.el('li', { className: 'breadcrumb-item' });
-    li2.appendChild(U.el('a', { href: '../index.html', textContent: 'Courses' }));
+    li2.appendChild(U.el('a', { href: '../index.html', textContent: 'الكورسات' }));
     ol.appendChild(li2);
 
     var li3 = U.el('li', {
@@ -312,8 +273,7 @@
 
     var nav = U.el('nav', {
       className: 'breadcrumb-nav',
-      aria:      { label: 'Breadcrumb' },
-      style:     { direction: 'ltr' }
+      aria:      { label: 'مسار التنقل' }
     }, [ol]);
 
     return nav;
@@ -321,12 +281,6 @@
 
   /* ── Header ── */
 
-  /**
-   * Builds the page header with back link, breadcrumb, and h1 title.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the <header> element
-   */
   function buildHeader(course) {
     return U.el('header', {
       className: 'details-header',
@@ -335,7 +289,7 @@
       U.el('div', { className: 'page-container' }, [
         U.el('a', { className: 'back-link', href: '../index.html' }, [
           U.el('i', { className: 'bi bi-arrow-right', aria: { hidden: 'true' } }),
-          'Back to Courses'
+          'العودة للكورسات'
         ]),
         buildBreadcrumb(course),
         U.el('h1', { className: 'page-title', textContent: course.title })
@@ -343,19 +297,11 @@
     ]);
   }
 
-  /* ── Section Title Helper (LTR: icon then text, aligned left) ── */
+  /* ── Section Title Helper ── */
 
-  /**
-   * Builds a section heading with icon and text, forced LTR.
-   *
-   * @param {string} iconClass — Bootstrap Icon class
-   * @param {string} titleText — the heading text
-   * @returns {HTMLElement} the <h2> element
-   */
   function _buildSectionTitle(iconClass, titleText) {
     return U.el('h2', {
-      className: 'details-section-title',
-      style:     { direction: 'ltr', textAlign: 'left' }
+      className: 'details-section-title'
     }, [
       U.el('i', { className: iconClass, aria: { hidden: 'true' } }),
       titleText
@@ -364,12 +310,6 @@
 
   /* ── Learning Objectives ── */
 
-  /**
-   * Builds the "What You'll Learn" section with a grid of objectives.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement|null} the section element, or null if no objectives
-   */
   function buildObjectives(course) {
     if (!course.learningObjectives || !course.learningObjectives.length) return null;
 
@@ -383,22 +323,15 @@
 
     return U.el('section', {
       className: 'details-section',
-      aria:      { label: 'What you will learn' }
+      aria:      { label: 'هتتعلم إيه' }
     }, [
-      _buildSectionTitle('bi bi-lightbulb', "What You'll Learn"),
+      _buildSectionTitle('bi bi-lightbulb', 'هتتعلم إيه'),
       list
     ]);
   }
 
   /* ── Curriculum ── */
 
-  /**
-   * Builds the Curriculum section with Bootstrap accordion.
-   * Parses MM:SS duration strings, computes totals.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement|null} the section element, or null if no curriculum
-   */
   function buildCurriculum(course) {
     if (!course.curriculum || !course.curriculum.length) return null;
 
@@ -419,13 +352,12 @@
 
     var totalHours   = Math.floor(totalDurationSec / 3600);
     var totalMins    = Math.ceil((totalDurationSec % 3600) / 60);
-    var durationText = (totalHours > 0 ? totalHours + 'h ' : '') + totalMins + 'm total';
+    var durationText = (totalHours > 0 ? U.formatNumberAr(totalHours) + ' ساعة ' : '') + U.formatNumberAr(totalMins) + ' دقيقة';
 
     var summaryLine = U.el('p', {
-      className:   'mb-3',
-      style:       { color: 'var(--text-muted)', fontSize: '0.85rem', direction: 'ltr', textAlign: 'left' },
-      textContent: course.curriculum.length + ' sections \u2022 ' +
-                   totalLessons + ' lessons \u2022 ' + durationText
+      className:   'mb-3 curriculum-summary',
+      textContent: U.formatNumberAr(course.curriculum.length) + ' أقسام \u2022 ' +
+                   U.formatNumberAr(totalLessons) + ' درس \u2022 ' + durationText
     });
 
     var accordion = U.el('div', {
@@ -454,18 +386,19 @@
         className: 'accordion-button' + (sIdx === 0 ? '' : ' collapsed'),
         type:      'button',
         dataset:   { bsToggle: 'collapse', bsTarget: '#' + bodyId },
-        aria:      { expanded: sIdx === 0 ? 'true' : 'false', controls: bodyId },
-        style:     { display: 'flex', justifyContent: 'space-between', alignItems: 'center' }
+        aria:      { expanded: sIdx === 0 ? 'true' : 'false', controls: bodyId }
       });
-      btn.appendChild(U.el('span', {
+
+      var btnContent = U.el('span', { className: 'curriculum-btn-content' });
+      btnContent.appendChild(U.el('span', {
         textContent: section.title,
-        style:       { textAlign: 'right', flex: '1' }
+        className:   'curriculum-section-title'
       }));
-      btn.appendChild(U.el('span', {
+      btnContent.appendChild(U.el('span', {
         className:   'curriculum-section-meta',
-        textContent: sectionLessons + ' lessons \u2022 ' + sectionDurMin + ' min',
-        style:       { direction: 'ltr', whiteSpace: 'nowrap', marginLeft: '0', marginRight: 'auto', paddingLeft: '0.5rem' }
+        textContent: U.formatNumberAr(sectionLessons) + ' درس \u2022 ' + U.formatNumberAr(sectionDurMin) + ' د'
       }));
+      btn.appendChild(btnContent);
 
       var header = U.el('h2', { className: 'accordion-header', id: headerId });
       header.appendChild(btn);
@@ -480,7 +413,7 @@
             metaEl.appendChild(U.el('span', { className: 'lesson-duration', textContent: lesson.duration }));
           }
           if (lesson.preview) {
-            metaEl.appendChild(U.el('span', { className: 'lesson-preview-badge', textContent: 'Preview' }));
+            metaEl.appendChild(U.el('span', { className: 'lesson-preview-badge', textContent: 'معاينة' }));
           }
           lessonList.appendChild(U.el('li', { className: 'lesson-item' }, [
             U.el('i',    { className: iconClass + ' lesson-icon', aria: { hidden: 'true' } }),
@@ -506,9 +439,9 @@
 
     return U.el('section', {
       className: 'details-section',
-      aria:      { label: 'Course curriculum' }
+      aria:      { label: 'محتوى الكورس' }
     }, [
-      _buildSectionTitle('bi bi-journal-text', 'Curriculum'),
+      _buildSectionTitle('bi bi-journal-text', 'محتوى الكورس'),
       summaryLine,
       accordion
     ]);
@@ -516,12 +449,6 @@
 
   /* ── FAQ ── */
 
-  /**
-   * Builds the FAQ section with Bootstrap accordion.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement|null} the section element, or null if no FAQ
-   */
   function buildFAQ(course) {
     if (!course.faq || !course.faq.length) return null;
 
@@ -561,34 +488,25 @@
 
     return U.el('section', {
       className: 'details-section',
-      aria:      { label: 'Frequently asked questions' }
+      aria:      { label: 'أسئلة شائعة' }
     }, [
-      _buildSectionTitle('bi bi-question-circle', 'Frequently Asked Questions'),
+      _buildSectionTitle('bi bi-question-circle', 'أسئلة شائعة'),
       accordion
     ]);
   }
 
   /* ── Price Display Builder ── */
 
-  /**
-   * Builds the price display element with discount awareness.
-   * Handles three scenarios: free, paid without discount, paid with discount.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the .price-display container
-   */
   function _buildPriceDisplay(course) {
     var isFree = parseFloat(course.price) === 0;
 
-    /* — Free course — */
     if (isFree) {
       return U.el('div', {
-        className: 'price-display',
-        style:     { direction: 'ltr' }
+        className: 'price-display'
       }, [
         U.el('span', {
           className:   'price-current free',
-          textContent: 'Free'
+          textContent: 'مجاني'
         })
       ]);
     }
@@ -597,27 +515,25 @@
     var originalPrice = parseFloat(course.originalPrice) || 0;
     var hasDiscount = originalPrice > currentPrice && currentPrice > 0;
 
-    /* — Paid, no discount — */
     if (!hasDiscount) {
       return U.el('div', {
         className: 'price-display',
-        aria:      { label: 'السعر: ' + currentPrice.toFixed(0) + ' ج.م' }
+        aria:      { label: 'السعر: ' + U.formatNumberAr(currentPrice) + ' ج.م' }
       }, [
         U.el('span', {
           className:   'price-current',
-          textContent: currentPrice.toFixed(0) + ' ج.م',
+          textContent: U.formatNumberAr(currentPrice) + ' ج.م',
           aria:        { hidden: 'true' }
         })
       ]);
     }
 
-    /* — Paid, with discount — */
     var discountPercent = Math.round((1 - currentPrice / originalPrice) * 100);
-    var savedAmount     = (originalPrice - currentPrice).toFixed(0);
+    var savedAmount     = originalPrice - currentPrice;
 
-    var ariaText = 'السعر الأصلي ' + originalPrice.toFixed(0) + ' ج.م' +
-                   '، الآن ' + currentPrice.toFixed(0) + ' ج.م' +
-                   '، خصم ' + discountPercent + '%، وفرت ' + savedAmount + ' ج.م';
+    var ariaText = 'السعر الأصلي ' + U.formatNumberAr(originalPrice) + ' ج.م' +
+                   '، الآن ' + U.formatNumberAr(currentPrice) + ' ج.م' +
+                   '، خصم ' + U.formatNumberAr(discountPercent) + '%، وفرت ' + U.formatNumberAr(savedAmount) + ' ج.م';
 
     return U.el('div', {
       className: 'price-display',
@@ -625,33 +541,27 @@
     }, [
       U.el('span', {
         className:   'price-original',
-        textContent: originalPrice.toFixed(0) + ' ج.م',
+        textContent: U.formatNumberAr(originalPrice) + ' ج.م',
         aria:        { hidden: 'true' }
       }),
       U.el('span', {
         className:   'price-current',
-        textContent: currentPrice.toFixed(0) + ' ج.م',
+        textContent: U.formatNumberAr(currentPrice) + ' ج.م',
         aria:        { hidden: 'true' }
       }),
       U.el('span', {
         className: 'price-discount',
         aria:      { hidden: 'true' }
       }, [
-        'خصم ' + discountPercent + '%',
+        'خصم ' + U.formatNumberAr(discountPercent) + '%',
         U.el('span', { className: 'price-discount-dot', textContent: '\u00B7' }),
-        'وفر ' + savedAmount + ' ج.م'
+        'وفر ' + U.formatNumberAr(savedAmount) + ' ج.م'
       ])
     ]);
   }
 
   /* ── Sidebar Card ── */
 
-  /**
-   * Builds the sidebar card with course image, price, action buttons, and meta list.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the .sidebar-card element
-   */
   function buildSidebarCard(course) {
     var img = U.el('img', {
       className: 'sidebar-course-img',
@@ -662,13 +572,9 @@
     });
 
     var priceEl = _buildPriceDisplay(course);
-
     var isFree = parseFloat(course.price) === 0;
 
-    var buttonsWrapper = U.el('div', {
-      className: 'sidebar-buttons',
-      style:     { direction: 'ltr' }
-    });
+    var buttonsWrapper = U.el('div', { className: 'sidebar-buttons' });
 
     if (isFree) {
       var driveUrl = U.sanitizeUrl(course.driveUrl || '');
@@ -678,10 +584,10 @@
           href:      driveUrl || '#',
           target:    driveUrl ? '_blank' : '_self',
           rel:       'noopener noreferrer',
-          aria:      { label: 'Start learning ' + course.title + ' for free' }
+          aria:      { label: 'ابدأ تعلم ' + course.title + ' مجاناً' }
         }, [
           U.el('i', { className: 'bi bi-play-circle-fill', aria: { hidden: 'true' } }),
-          ' Start Learning Now'
+          ' ابدأ التعلم الآن'
         ])
       );
     } else {
@@ -693,13 +599,12 @@
           target:    '_blank',
           rel:       'noopener noreferrer',
           aria: {
-            label: 'Buy ' + course.title +
-                   ' for $' + parseFloat(course.price).toFixed(2) +
-                   ' via WhatsApp'
+            label: 'اشتري كورس ' + course.title +
+                   ' بسعر ' + U.formatNumberAr(course.price) + ' ج.م عبر واتساب'
           }
         }, [
           U.el('i', { className: 'bi bi-whatsapp', aria: { hidden: 'true' } }),
-          ' Buy Now \u2014 $' + parseFloat(course.price).toFixed(2)
+          ' اشتري الآن \u2014 ' + U.formatNumberAr(course.price) + ' ج.م'
         ])
       );
 
@@ -707,52 +612,41 @@
         U.el('a', {
           className: 'btn-enter-course',
           href:      '/course/paid/' + course.id,
-          aria:      { label: 'Access course \u2014 sign in to enter' }
+          aria:      { label: 'دخول الكورس — تسجيل الدخول للمشتركين' }
         }, [
-          U.el('i', { className: 'bi bi-box-arrow-in-right', aria: { hidden: 'true' } }),
-          ' Already Purchased? Enter Course'
+          U.el('i', { className: 'bi bi-box-arrow-in-left', aria: { hidden: 'true' } }),
+          ' اشتريت الكورس\u061F ادخل هنا \u{1F511}'
         ])
       );
     }
 
-    var metaList = U.el('ul', {
-      className: 'course-meta-list',
-      style:     { direction: 'ltr' }
-    });
-    metaList.appendChild(_buildMetaItem('bi-person-fill',    'Instructor', course.instructor));
-    metaList.appendChild(_buildMetaItem('bi-tag-fill',       'Category',   course.category));
-    metaList.appendChild(_buildMetaItem('bi-bar-chart-fill', 'Level',      course.level));
-    metaList.appendChild(_buildMetaItem('bi-people-fill',    'Students',   U.formatNumber(course.students)));
-    metaList.appendChild(_buildMetaItem('bi-book-fill',      'Lessons',    String(course.lessons)));
+    var metaList = U.el('ul', { className: 'course-meta-list' });
+    metaList.appendChild(_buildMetaItem('bi-person-fill',    'المدرّس',    course.instructor));
+    metaList.appendChild(_buildMetaItem('bi-tag-fill',       'الفصل',     course.category));
+    metaList.appendChild(_buildMetaItem('bi-bar-chart-fill', 'المستوى',   course.level));
+    metaList.appendChild(_buildMetaItem('bi-people-fill',    'الطلاب',    U.formatNumberAr(course.students)));
+    metaList.appendChild(_buildMetaItem('bi-book-fill',      'الدروس',    U.formatNumberAr(course.lessons)));
 
     var ratingMetaValue = U.el('span', { className: 'meta-value', id: 'meta-rating-value' });
     var ratingInline    = U.el('span', { className: 'meta-rating-inline' });
     if (RS) ratingInline.appendChild(RS.renderStars(course.rating, false));
-    ratingInline.appendChild(U.el('span', { textContent: ' ' + (course.rating || 0).toFixed(1) }));
+    ratingInline.appendChild(U.el('span', { textContent: ' ' + U.formatNumberAr((course.rating || 0).toFixed(1)) }));
     ratingMetaValue.appendChild(ratingInline);
 
     metaList.appendChild(U.el('li', { className: 'course-meta-item' }, [
       U.el('span', { className: 'meta-label' }, [
         U.el('i', { className: 'bi bi-star-fill', aria: { hidden: 'true' } }),
-        'Rating'
+        'التقييم'
       ]),
       ratingMetaValue
     ]));
 
-    metaList.appendChild(_buildMetaItem('bi-calendar3', 'Updated', _formatDate(course.date)));
+    metaList.appendChild(_buildMetaItem('bi-calendar3', 'آخر تحديث', _formatDate(course.date)));
 
     var content = U.el('div', { className: 'sidebar-content' }, [priceEl, buttonsWrapper, metaList]);
     return U.el('div', { className: 'sidebar-card' }, [img, content]);
   }
 
-  /**
-   * Builds a single meta list item (icon + label + value).
-   *
-   * @param {string} icon — Bootstrap Icon class (without "bi " prefix)
-   * @param {string} label — the label text
-   * @param {string} value — the value text
-   * @returns {HTMLElement} the <li> element
-   */
   function _buildMetaItem(icon, label, value) {
     return U.el('li', { className: 'course-meta-item' }, [
       U.el('span', { className: 'meta-label' }, [
@@ -763,33 +657,13 @@
     ]);
   }
 
-  /**
-   * Formats a date string as a human-readable US English date.
-   *
-   * @param {string} dateStr — ISO date string
-   * @returns {string} formatted date or original string on error
-   */
-  function _formatDate(dateStr) {
-    try {
-      return new Date(dateStr).toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      });
-    } catch (e) { return dateStr; }
-  }
-
   /* ── Rating Card ── */
 
-  /**
-   * Builds the rating card with display stars, interactive stars, and status.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the .rating-card element
-   */
   function buildRatingCard(course) {
     var card = U.el('div', { className: 'rating-card', id: 'rating-card' });
 
-    card.appendChild(U.el('h3', { className: 'rating-card-title',    textContent: 'Rate This Course' }));
-    card.appendChild(U.el('p',  { className: 'rating-card-subtitle', textContent: 'Share your experience with other students' }));
+    card.appendChild(U.el('h3', { className: 'rating-card-title',    textContent: 'قيّم الكورس' }));
+    card.appendChild(U.el('p',  { className: 'rating-card-subtitle', textContent: 'شاركنا رأيك عشان نحسّن المحتوى' }));
 
     card.appendChild(U.el('div', { className: 'rating-big-number', id: 'rating-big-number', textContent: '\u2014' }));
 
@@ -797,7 +671,7 @@
     if (RS) displayStarsContainer.appendChild(RS.renderStars(0, false));
     card.appendChild(displayStarsContainer);
 
-    card.appendChild(U.el('p', { className: 'rating-count', id: 'rating-count-text', textContent: 'Loading ratings...' }));
+    card.appendChild(U.el('p', { className: 'rating-count', id: 'rating-count-text', textContent: 'جاري تحميل التقييمات...' }));
 
     var interactiveContainer = U.el('div', { id: 'rating-interactive-stars' });
     if (RS) {
@@ -807,7 +681,7 @@
         _handleRatingSubmit(course.id, value);
       });
     } else {
-      interactiveContainer.appendChild(U.el('p', { className: 'rating-status', textContent: 'Rating system not available' }));
+      interactiveContainer.appendChild(U.el('p', { className: 'rating-status', textContent: 'نظام التقييم غير متاح حالياً' }));
     }
     card.appendChild(interactiveContainer);
     card.appendChild(U.el('p', { className: 'rating-status', id: 'rating-status-msg' }));
@@ -815,57 +689,43 @@
     return card;
   }
 
-  /**
-   * Handles rating submission: disables stars, calls API, updates UI.
-   *
-   * @param {number} courseId — the course ID
-   * @param {number} value — the star value (1-5)
-   */
   function _handleRatingSubmit(courseId, value) {
     var statusEl             = U.qs('#rating-status-msg');
     var interactiveContainer = U.qs('#rating-interactive-stars .stars-interactive');
 
-    if (statusEl) { statusEl.textContent = 'Submitting your rating...'; statusEl.className = 'rating-status'; }
+    if (statusEl) { statusEl.textContent = 'جاري إرسال تقييمك...'; statusEl.className = 'rating-status'; }
     if (RS && interactiveContainer) RS.disableStars(interactiveContainer);
 
     RS.submitRating(courseId, value).then(function (result) {
       if (result.status === 'success') {
-        if (statusEl) { statusEl.textContent = 'Thank you for your rating!'; statusEl.className = 'rating-status success'; }
-        U.showToast('Rating submitted successfully!', 'success');
-        U.announce('Rating submitted successfully');
+        if (statusEl) { statusEl.textContent = 'شكراً لتقييمك! \u2764'; statusEl.className = 'rating-status success'; }
+        U.showToast('تم إرسال تقييمك بنجاح!', 'success');
+        U.announce('تم إرسال التقييم بنجاح');
         _loadAndDisplayRatings(courseId);
       } else {
         if (statusEl) {
-          statusEl.textContent = result.message || 'Failed to submit. Please try again.';
+          statusEl.textContent = result.message || 'حصل مشكلة. جرّب تاني.';
           statusEl.className   = 'rating-status error';
         }
-        if (interactiveContainer) {
-          interactiveContainer.classList.remove('stars-disabled');
-          interactiveContainer.querySelectorAll('.star-btn').forEach(function (s) { s.disabled = false; });
-          var firstStar = interactiveContainer.querySelector('.star-btn');
-          if (firstStar) firstStar.setAttribute('tabindex', '0');
-        }
+        _reEnableStars(interactiveContainer);
       }
     }).catch(function () {
       if (statusEl) {
-        statusEl.textContent = 'Connection error. Please try again.';
+        statusEl.textContent = 'مشكلة في الاتصال. جرّب تاني.';
         statusEl.className = 'rating-status error';
       }
-      if (interactiveContainer) {
-        interactiveContainer.classList.remove('stars-disabled');
-        interactiveContainer.querySelectorAll('.star-btn').forEach(function (s) { s.disabled = false; });
-        var firstStar = interactiveContainer.querySelector('.star-btn');
-        if (firstStar) firstStar.setAttribute('tabindex', '0');
-      }
+      _reEnableStars(interactiveContainer);
     });
   }
 
-  /**
-   * Fetches live ratings and updates the display: big number, stars,
-   * count text, sidebar meta, and Course JSON-LD aggregateRating.
-   *
-   * @param {number} courseId — the course ID
-   */
+  function _reEnableStars(container) {
+    if (!container) return;
+    container.classList.remove('stars-disabled');
+    container.querySelectorAll('.star-btn').forEach(function (s) { s.disabled = false; });
+    var firstStar = container.querySelector('.star-btn');
+    if (firstStar) firstStar.setAttribute('tabindex', '0');
+  }
+
   function _loadAndDisplayRatings(courseId) {
     if (!RS) return;
     RS.fetchRatings(courseId).then(function (data) {
@@ -873,7 +733,7 @@
       var count = data.count   || 0;
 
       var bigNum = U.qs('#rating-big-number');
-      if (bigNum) bigNum.textContent = avg > 0 ? avg.toFixed(1) : '\u2014';
+      if (bigNum) bigNum.textContent = avg > 0 ? U.formatNumberAr(avg.toFixed(1)) : '\u2014';
 
       var displayContainer = U.qs('#rating-display-stars');
       if (displayContainer && RS) {
@@ -884,8 +744,8 @@
       var countText = U.qs('#rating-count-text');
       if (countText) {
         countText.textContent = count > 0
-          ? U.formatNumber(count) + ' rating' + (count !== 1 ? 's' : '')
-          : 'No ratings yet \u2014 be the first!';
+          ? U.formatNumberAr(count) + ' تقييم'
+          : 'مفيش تقييمات لسه \u2014 كن أول من يقيّم!';
       }
 
       var metaRating = U.qs('#meta-rating-value');
@@ -893,7 +753,7 @@
         clearElement(metaRating);
         var inline = U.el('span', { className: 'meta-rating-inline' });
         inline.appendChild(RS.renderStars(avg, false));
-        inline.appendChild(U.el('span', { textContent: ' ' + (avg > 0 ? avg.toFixed(1) : '\u2014') }));
+        inline.appendChild(U.el('span', { textContent: ' ' + (avg > 0 ? U.formatNumberAr(avg.toFixed(1)) : '\u2014') }));
         metaRating.appendChild(inline);
       }
 
@@ -903,11 +763,6 @@
 
   /* ── Utilities ── */
 
-  /**
-   * Removes all child nodes from an element.
-   *
-   * @param {HTMLElement} el — the element to clear
-   */
   function clearElement(el) {
     if (!el) return;
     while (el.firstChild) el.removeChild(el.firstChild);
@@ -915,13 +770,6 @@
 
   /* ── Page Builder ── */
 
-  /**
-   * Builds the entire course details page content and appends it
-   * to the container. Also triggers async rating load.
-   *
-   * @param {Object} course — the course data object
-   * @param {HTMLElement} container — the parent element (#app)
-   */
   function buildPage(course, container) {
     buildSchema(course);
 
@@ -960,18 +808,12 @@
      AI COURSE ASSISTANT — Chat Widget
      ============================================================ */
 
-  /**
-   * Builds the floating action button (FAB) for the chat widget.
-   * Fixed position, toggles chat open/close.
-   *
-   * @returns {HTMLElement} the FAB button element
-   */
   function buildChatFab() {
     var fab = U.el('button', {
       className: 'chat-fab chat-fab--pulse',
       id:        'chat-fab',
       type:      'button',
-      aria:      { expanded: 'false', label: 'Open course assistant' }
+      aria:      { expanded: 'false', label: 'فتح مساعد الكورس' }
     }, [
       U.el('i', {
         className: 'bi bi-chat-dots-fill chat-fab-icon chat-fab-icon--open',
@@ -986,15 +828,8 @@
     return fab;
   }
 
-  /**
-   * Builds the full chat widget container: header, messages area,
-   * typing indicator, and input area.
-   *
-   * @param {Object} course — the course data object
-   * @returns {HTMLElement} the chat widget element
-   */
   function buildChatWidget(course) {
-    /* ── Header ── */
+    /* ── Header — removed the second close button next to name ── */
     var header = U.el('div', { className: 'chat-header', id: 'chat-header' }, [
       U.el('div', { className: 'chat-header-info' }, [
         U.el('div', { className: 'chat-header-avatar' }, [
@@ -1004,13 +839,6 @@
           U.el('div', { className: 'chat-header-name', textContent: CHAT_CONFIG.botName }),
           U.el('div', { className: 'chat-header-status', textContent: course.title })
         ])
-      ]),
-      U.el('button', {
-        className: 'chat-header-close',
-        type:      'button',
-        aria:      { label: 'Close course assistant' }
-      }, [
-        U.el('i', { className: 'bi bi-x-lg', aria: { hidden: 'true' } })
       ])
     ]);
 
@@ -1019,7 +847,7 @@
       className: 'chat-messages',
       id:        'chat-messages',
       role:      'log',
-      aria:      { live: 'polite', label: 'Course assistant conversation' }
+      aria:      { live: 'polite', label: 'محادثة مساعد الكورس' }
     });
 
     /* ── Typing indicator ── */
@@ -1046,7 +874,7 @@
       id:        'chat-send-btn',
       type:      'button',
       disabled:  'true',
-      aria:      { label: 'Send message' }
+      aria:      { label: 'إرسال الرسالة' }
     }, [
       U.el('i', { className: 'bi bi-send-fill', aria: { hidden: 'true' } })
     ]);
@@ -1070,11 +898,6 @@
     return widget;
   }
 
-  /**
-   * Builds the 3-dot typing indicator animation element.
-   *
-   * @returns {HTMLElement} the typing dots container
-   */
   function _buildTypingIndicator() {
     return U.el('div', { className: 'chat-typing-dots' }, [
       U.el('span', { className: 'chat-typing-dot' }),
@@ -1083,13 +906,6 @@
     ]);
   }
 
-  /**
-   * Builds a single chat message bubble element.
-   *
-   * @param {string} role — "user", "model", or "error"
-   * @param {string} text — the message text
-   * @returns {HTMLElement} the message bubble element
-   */
   function _buildMessageBubble(role, text) {
     var bubbleClass = 'chat-bubble';
     if (role === 'user')  bubbleClass += ' chat-bubble--user';
@@ -1098,7 +914,6 @@
 
     var bubble = U.el('div', { className: bubbleClass });
 
-    /* Split text into paragraphs on double-newline, single-newline becomes <br> equivalent via separate <p> */
     var paragraphs = text.split(/\n+/);
     for (var i = 0; i < paragraphs.length; i++) {
       var line = paragraphs[i].trim();
@@ -1113,40 +928,24 @@
     return bubble;
   }
 
-  /**
-   * Adds a message bubble to the chat messages area and scrolls down.
-   *
-   * @param {string} role — "user", "model", or "error"
-   * @param {string} text — the message text
-   */
   function _addChatMessage(role, text) {
     var container = U.qs('#chat-messages');
     if (!container) return;
-
     container.appendChild(_buildMessageBubble(role, text));
     _scrollChatToBottom();
   }
 
-  /**
-   * Shows the typing indicator.
-   */
   function _showChatTyping() {
     var typing = U.qs('#chat-typing');
     if (typing) typing.classList.add('chat-typing--visible');
     _scrollChatToBottom();
   }
 
-  /**
-   * Hides the typing indicator.
-   */
   function _hideChatTyping() {
     var typing = U.qs('#chat-typing');
     if (typing) typing.classList.remove('chat-typing--visible');
   }
 
-  /**
-   * Scrolls the chat messages area to the bottom smoothly.
-   */
   function _scrollChatToBottom() {
     var container = U.qs('#chat-messages');
     if (!container) return;
@@ -1155,22 +954,10 @@
     });
   }
 
-  /**
-   * Returns the sessionStorage key for a given courseId.
-   *
-   * @param {number} courseId — the course ID
-   * @returns {string} the storage key
-   */
   function _chatStorageKey(courseId) {
     return CHAT_CONFIG.storagePrefix + courseId;
   }
 
-  /**
-   * Reads the chat history from sessionStorage.
-   *
-   * @param {number} courseId — the course ID
-   * @returns {Array} array of { role, text } objects
-   */
   function _getChatHistory(courseId) {
     try {
       var raw = sessionStorage.getItem(_chatStorageKey(courseId));
@@ -1183,53 +970,28 @@
     }
   }
 
-  /**
-   * Saves a single message to the chat history in sessionStorage.
-   * Enforces the max history limit by removing the oldest pair
-   * when the limit is exceeded.
-   *
-   * @param {number} courseId — the course ID
-   * @param {string} role — "user" or "model"
-   * @param {string} text — the message text
-   */
   function _saveChatMessage(courseId, role, text) {
     try {
       var history = _getChatHistory(courseId);
       history.push({ role: role, text: text });
-
-      /* Trim to max history — remove oldest pair (2 items) */
       while (history.length > CHAT_CONFIG.maxHistory) {
         history.shift();
         if (history.length > 0 && history[0].role === 'model') {
           history.shift();
         }
       }
-
       sessionStorage.setItem(_chatStorageKey(courseId), JSON.stringify(history));
-    } catch (e) {
-      /* sessionStorage full or unavailable — silently degrade */
-    }
+    } catch (e) {}
   }
 
-  /**
-   * Loads existing chat history from sessionStorage and rebuilds
-   * message bubbles in the chat messages area.
-   *
-   * @param {number} courseId — the course ID
-   */
   function _loadChatHistory(courseId) {
     var history = _getChatHistory(courseId);
     if (history.length === 0) return;
-
     for (var i = 0; i < history.length; i++) {
       _addChatMessage(history[i].role, history[i].text);
     }
   }
 
-  /**
-   * Toggles the chat widget open or closed with CSS transitions.
-   * Updates FAB state, aria attributes, and manages focus.
-   */
   function _toggleChat() {
     var fab    = U.qs('#chat-fab');
     var widget = U.qs('#chat-widget');
@@ -1241,35 +1003,23 @@
       widget.classList.add('chat-widget--open');
       fab.classList.add('chat-fab--active');
       fab.setAttribute('aria-expanded', 'true');
-      fab.setAttribute('aria-label', 'Close course assistant');
-
-      /* Stop pulse animation once opened */
+      fab.setAttribute('aria-label', 'إغلاق مساعد الكورس');
       fab.classList.remove('chat-fab--pulse');
 
-      /* Focus textarea */
       var input = U.qs('#chat-input');
       if (input) {
         setTimeout(function () { input.focus(); }, 100);
       }
-
       _scrollChatToBottom();
     } else {
       widget.classList.remove('chat-widget--open');
       fab.classList.remove('chat-fab--active');
       fab.setAttribute('aria-expanded', 'false');
-      fab.setAttribute('aria-label', 'Open course assistant');
-
-      /* Return focus to FAB */
+      fab.setAttribute('aria-label', 'فتح مساعد الكورس');
       fab.focus();
     }
   }
 
-  /**
-   * Handles chat message submission: reads input, validates, sends to
-   * /api/chat, and displays the response.
-   *
-   * @param {number} courseId — the course ID
-   */
   function _handleChatSubmit(courseId) {
     if (chatState.sending) return;
 
@@ -1283,29 +1033,22 @@
       message = message.substring(0, CHAT_CONFIG.maxMessageLen);
     }
 
-    /* Add user bubble */
     _addChatMessage('user', message);
     _saveChatMessage(courseId, 'user', message);
 
-    /* Reset input */
     input.value = '';
     _resizeChatInput(input);
     if (sendBtn) sendBtn.disabled = true;
 
-    /* Show typing + disable input */
     chatState.sending = true;
     _showChatTyping();
     input.disabled = true;
 
-    /* Build API payload */
     var history = _getChatHistory(courseId);
-    /* Remove the just-added user message from history sent to API
-       (it goes as `message`, not in `history`) */
     if (history.length > 0 && history[history.length - 1].role === 'user') {
       history = history.slice(0, history.length - 1);
     }
 
-    /* Call API */
     var controller = new AbortController();
     var timer      = setTimeout(function () { controller.abort(); }, 35000);
 
@@ -1344,10 +1087,6 @@
     });
   }
 
-  /**
-   * Re-enables the chat input and send button after a response.
-   * Focuses the textarea.
-   */
   function _enableChatInput() {
     chatState.sending = false;
     var input   = U.qs('#chat-input');
@@ -1361,46 +1100,24 @@
     }
   }
 
-  /**
-   * Resizes the textarea to auto-grow up to 3 lines, or shrink back.
-   *
-   * @param {HTMLTextAreaElement} textarea — the chat input element
-   */
   function _resizeChatInput(textarea) {
     textarea.style.height = 'auto';
-    /* Clamp to max 3 lines (~72px at 1.5 line-height * 0.88rem * 3) */
     var maxHeight = 72;
     var scrollH   = textarea.scrollHeight;
     textarea.style.height = Math.min(scrollH, maxHeight) + 'px';
   }
 
-  /**
-   * Binds all chat widget events: FAB click, close button, textarea
-   * input/keydown, send button, and keyboard escape.
-   *
-   * @param {number} courseId — the course ID
-   */
   function initChatEvents(courseId) {
     var fab      = U.qs('#chat-fab');
-    var closeBtn = U.qs('.chat-header-close');
     var input    = U.qs('#chat-input');
     var sendBtn  = U.qs('#chat-send-btn');
 
-    /* FAB toggle */
     if (fab) {
       fab.addEventListener('click', function () {
         _toggleChat();
       });
     }
 
-    /* Header close button */
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function () {
-        if (chatState.isOpen) _toggleChat();
-      });
-    }
-
-    /* Textarea auto-grow + send button state */
     if (input) {
       input.addEventListener('input', function () {
         _resizeChatInput(input);
@@ -1409,7 +1126,6 @@
         }
       });
 
-      /* Enter = submit, Shift+Enter = newline */
       input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
@@ -1418,14 +1134,12 @@
       });
     }
 
-    /* Send button click */
     if (sendBtn) {
       sendBtn.addEventListener('click', function () {
         _handleChatSubmit(courseId);
       });
     }
 
-    /* Escape key closes chat */
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && chatState.isOpen) {
         _toggleChat();
@@ -1435,11 +1149,6 @@
 
   /* ── Init ── */
 
-  /**
-   * Main initialization function. Reads course ID from URL, finds
-   * the course, injects SEO, builds the page, scrolls to title,
-   * and initializes the chat widget.
-   */
   function init() {
     var app      = U.qs('#app') || document.body;
     var courseId = getCourseIdFromURL();
@@ -1452,7 +1161,6 @@
     injectSEO(course);
     buildPage(course, app);
 
-    /* Scroll past navigation to course title on initial load */
     requestAnimationFrame(function () {
       var titleEl = U.qs('.page-title');
       if (titleEl) {
@@ -1460,12 +1168,10 @@
       }
     });
 
-    /* Chat widget — appended to body (fixed overlays, not in content flow) */
     document.body.appendChild(buildChatFab());
     document.body.appendChild(buildChatWidget(course));
     initChatEvents(course.id);
 
-    /* Load previous session messages + add welcome */
     var messagesContainer = U.qs('#chat-messages');
     if (messagesContainer) {
       var existingHistory = _getChatHistory(course.id);
@@ -1482,6 +1188,5 @@
   } else {
     init();
   }
-
 
 })();
