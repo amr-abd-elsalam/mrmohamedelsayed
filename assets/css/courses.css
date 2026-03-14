@@ -74,6 +74,21 @@
   --z-skip: 9999;
 }
 
+/* ── Breadcrumb RTL fix ── */
+
+.breadcrumb-nav .breadcrumb-item + .breadcrumb-item {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+.breadcrumb-nav .breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  color: var(--text-dim);
+  padding-left: 0.5rem;
+  padding-right: 0;
+  float: right;
+}
+
 /* ── Skip Link ── */
 
 .skip-link {
@@ -413,6 +428,7 @@ body {
 
 .sort-menu .dropdown-item {
   color: var(--text-primary);
+  text-align: right;
   border-radius: var(--radius-sm);
   padding: 0.6rem 1rem;
   font-size: 0.88rem;

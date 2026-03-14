@@ -3,6 +3,22 @@
    Extends courses.css variables — do NOT redefine them here.
    This file adds styles specific to the course details page.
 ============================================ */
+/* ── RTL Accordion arrow spacing (moved from inline <style>) ── */
+
+[dir="rtl"] .accordion-button::after {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* ── Breadcrumb RTL separator ── */
+
+.details-header .breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  color: var(--text-dim);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  float: right;
+}
 
 /* ── Hero / Page Header (Details) ── */
 
@@ -12,12 +28,12 @@
 
 .details-header .page-title {
   font-size: clamp(1.6rem, 4vw, 2.6rem);
-  text-align: left;
+  text-align: center;
   margin-bottom: 0.75rem;
 }
 
 .details-header .breadcrumb-nav .breadcrumb {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* ── Main Content Area ── */
@@ -202,15 +218,40 @@
   border-radius: 100px;
 }
 
-.curriculum-section-meta {
+/* ── Curriculum accordion layout ── */
+
+.curriculum-accordion .accordion-button {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  text-align: right;
+}
+
+.curriculum-btn-content {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.curriculum-section-title {
+  font-weight: 600;
+}
+
+.curriculum-section-meta {
   font-size: 0.78rem;
   color: var(--text-muted);
   font-weight: 400;
-  margin-left: auto;
+  white-space: nowrap;
   flex-shrink: 0;
+  direction: ltr;
+}
+
+.curriculum-summary {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: right;
 }
 
 /* ============================================
@@ -951,18 +992,6 @@
   .details-sidebar {
     position: static;
     margin-top: 2rem;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .details-header .page-title {
-    text-align: center;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .details-header .breadcrumb-nav .breadcrumb {
-    justify-content: center;
   }
 }
 
