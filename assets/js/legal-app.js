@@ -180,11 +180,12 @@
   }
 
   function buildFooter() {
-    setText('footer-brand-name', DATA.BRAND_NAME);
-    setText('footer-copyright',
-      '© ' + new Date().getFullYear() + ' ' +
-      DATA.BRAND_NAME + '. All rights reserved.'
-    );
+    var brandEl = document.getElementById('footer-brand-name');
+    var copyrEl = document.getElementById('footer-copyright');
+    if (brandEl) brandEl.textContent = DATA.BRAND_NAME;
+    if (copyrEl) copyrEl.textContent =
+      '© ' + U.formatYear(new Date().getFullYear()) + ' ' +
+      DATA.BRAND_NAME + '. جميع الحقوق محفوظة.';
   }
 
   /* ─────────────────────────────────────────

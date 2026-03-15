@@ -46,10 +46,10 @@
     : 0;
 
   var STATS = [
-    { icon: 'bi-journal-bookmark-fill', number: U.formatNumber(courseCount),   label: 'كورسات متاحة' },
-    { icon: 'bi-people-fill',           number: U.formatNumber(totalStudents), label: 'طلاب مسجلين' },
-    { icon: 'bi-star-fill',             number: avgRating > 0 ? avgRating.toFixed(1) : '0', label: 'متوسط التقييم' },
-    { icon: 'bi-award-fill',            number: ratedCourses.length > 0 ? '100%' : '0%',   label: 'نسبة الرضا' }
+    { icon: 'bi-journal-bookmark-fill', number: U.formatNumberAr(courseCount),   label: 'كورسات متاحة' },
+    { icon: 'bi-people-fill',           number: U.formatNumberAr(totalStudents), label: 'طلاب مسجلين' },
+    { icon: 'bi-star-fill',             number: avgRating > 0 ? U.formatNumberAr(avgRating.toFixed(1)) : '٠', label: 'متوسط التقييم' },
+    { icon: 'bi-award-fill',            number: ratedCourses.length > 0 ? '١٠٠٪' : '٠٪',   label: 'نسبة الرضا' }
   ];
 
   /* ─────────────────────────────────────────
@@ -85,7 +85,7 @@
 
   function formatPrice(price) {
     if (price === 0) return 'مجاني';
-    return price.toFixed(0) + ' ج.م';
+    return U.formatNumberAr(price) + ' ج.م';
   }
 
   function getFeaturedCourses() {
@@ -288,17 +288,19 @@
     var starsWrap = U.el('div', {
       className: 'featured-stars',
       role:      'img',
-      aria:      { label: 'التقييم: ' + course.rating + ' من 5' }
+      aria:      { label: 'التقييم: ' + U.formatNumberAr(course.rating) + ' من ٥' }
     });
     starsWrap.appendChild(buildStarFragment(course.rating));
     metaRow.appendChild(starsWrap);
 
+    /* meta — lessons */
     var lessonsItem = U.el('span', { className: 'featured-meta-item' }, [
       U.el('i', { className: 'bi bi-play-circle', aria: { hidden: 'true' } }),
-      ' ' + course.lessons + ' درس'
+      ' ' + U.formatNumberAr(course.lessons) + ' درس'
     ]);
     metaRow.appendChild(lessonsItem);
 
+    /* meta — level (already Arabic, no change needed) */
     var levelItem = U.el('span', { className: 'featured-meta-item' }, [
       U.el('i', { className: 'bi bi-bar-chart-fill', aria: { hidden: 'true' } }),
       ' ' + course.level
@@ -346,7 +348,7 @@
     var anchor = U.el('a', {
       className: 'category-card category-card--' + colorKey,
       href:      U.sanitizeUrl(buildCatalogUrl(name)),
-      aria:      { label: name + ' — ' + count + (count === 1 ? ' كورس' : ' كورسات') }
+      aria:      { label: name + ' — ' + U.formatNumberAr(count) + (count === 1 ? ' كورس' : ' كورسات') }
     });
 
     var iconWrap = U.el('div', { className: 'category-icon category-icon--' + colorKey }, [
@@ -357,8 +359,10 @@
     ]);
     anchor.appendChild(iconWrap);
 
-    anchor.appendChild(U.el('span', { className: 'category-name',  textContent: name }));
-    anchor.appendChild(U.el('span', { className: 'category-count', textContent: count === 1 ? 'كورس واحد' : count + ' كورسات' }));
+    anchor.appendChild(U.el('span', {
+      className: 'category-count',
+      textContent: count === 1 ? 'كورس واحد' : U.formatNumberAr(count) + ' كورسات'
+    }));
 
     col.appendChild(anchor);
     return col;
@@ -409,7 +413,7 @@
     var copyrEl = document.getElementById('footer-copyright');
     if (brandEl) brandEl.textContent = DATA.BRAND_NAME;
     if (copyrEl) copyrEl.textContent =
-      '© ' + new Date().getFullYear() + ' ' +
+      '© ' + U.formatNumberAr(new Date().getFullYear()).replace(/[٬,]/g, '') + ' ' +
       DATA.BRAND_NAME + '. جميع الحقوق محفوظة.';
   }
 

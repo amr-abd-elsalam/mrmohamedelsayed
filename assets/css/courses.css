@@ -762,6 +762,13 @@ body {
   transform: translateY(120px);
 }
 
+/* ── Offcanvas close button — push to left in RTL ── */
+
+.mobile-offcanvas .offcanvas-header .btn-close {
+  margin-right: auto;
+  margin-left: 0;
+}
+
 /* ============================================
    SCROLLBAR
 ============================================ */

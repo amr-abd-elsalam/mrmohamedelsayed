@@ -108,11 +108,27 @@ var Utils = (function () {
     return formatted;
   }
 
+  /**
+   * Formats a year number for display.
+   * @param {number|string} y  — the year (e.g. 2026)
+   * @param {string} [lang]    — 'ar' for Eastern Arabic digits, otherwise Latin
+   * @returns {string} e.g. '٢٠٢٦' or '2026'
+   */
+  function formatYear(y) {
+    if (y == null || isNaN(y)) return '';
+    var s = String(Math.floor(Number(y)));
+    // convert each Latin digit to Eastern Arabic
+    return s.replace(/\d/g, function (d) {
+      return String.fromCharCode(0x0660 + Number(d));
+    });
+  }
+
   return Object.freeze({
     escapeHtml: escapeHtml, escapeAttr: escapeAttr, sanitizeUrl: sanitizeUrl,
     el: el, buildSafeLink: buildSafeLink, showToast: showToast,
     qs: qs, qsa: qsa, debounce: debounce, throttle: throttle,
-    announce: announce, formatNumber: formatNumber, formatNumberAr: formatNumberAr
+    announce: announce, formatNumber: formatNumber, formatNumberAr: formatNumberAr,
+    formatYear: formatYear
   });
 })();
 

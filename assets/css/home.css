@@ -607,10 +607,11 @@
 .how-step-number {
   position: absolute;
   top: 1rem;
-  right: 1.25rem;
+  left: 1.25rem;       /* نقل لليسار */
+  right: auto;          /* إلغاء right */
   font-size: 3.5rem;
   font-weight: 900;
-  color: rgba(46, 125, 50, 0.06);
+  color: rgba(46, 125, 50, 0.2);  /* رفع الوضوح من 0.06 لـ 0.2 */
   line-height: 1;
   pointer-events: none;
   user-select: none;
