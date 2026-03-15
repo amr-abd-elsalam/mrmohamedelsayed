@@ -239,7 +239,7 @@
   function buildFiltersDOM() {
     var root = U.el('div', { id: 'filters-root', className: 'filters-panel' });
 
-    root.appendChild(U.el('h2', { className: 'filters-title', textContent: 'الفلاتر' }));
+    root.appendChild(U.el('h2', { className: 'filters-title d-none d-lg-block', textContent: 'الفلاتر' }));
 
     root.appendChild(U.el('h3', { className: 'filters-heading', textContent: 'الفصول' }));
     var catList   = U.el('div', { className: 'filter-group', id: 'category-filter-list' });
