@@ -358,7 +358,7 @@
       })
     ]);
     anchor.appendChild(iconWrap);
-
+    anchor.appendChild(U.el('span', { className: 'category-name',  textContent: name }));
     anchor.appendChild(U.el('span', {
       className: 'category-count',
       textContent: count === 1 ? 'كورس واحد' : U.formatNumberAr(count) + ' كورسات'
