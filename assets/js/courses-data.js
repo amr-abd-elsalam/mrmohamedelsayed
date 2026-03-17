@@ -55,7 +55,7 @@ var COURSE_DATA = (function () {
         {
           title: "مقدمة الفصل والجهاز الهيكلي",
           lessons: [
-            { title: "نظرة عامة — الدعامة والحركة وأهميتها", duration: "06:00", preview: true, previewUrl: "https://www.youtube.com/embed/5c-64AK1M3Q", previewThumb: "" },
+            { title: "نظرة عامة — الدعامة والحركة وأهميتها", duration: "06:00", preview: true, previewUrl: "https://www.youtube.com/embed/r0cuXOQFdF8", previewThumb: "" },
             { title: "تركيب العظام وأنواعها", duration: "14:00", preview: true, previewUrl: "PREVIEW_URL_1_0_1", previewThumb: "" },
             { title: "الغضاريف والمفاصل — أنواعها ووظائفها", duration: "12:00", preview: false },
             { title: "العمود الفقري والقفص الصدري — تركيب تفصيلي", duration: "15:00", preview: false }
