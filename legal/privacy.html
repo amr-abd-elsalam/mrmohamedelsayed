@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../assets/css/courses.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/legal.css">
 </head>
 
@@ -56,14 +57,14 @@
 
   <a href="#main-content" class="skip-link">تخطي إلى المحتوى</a>
 
-  <nav class="navbar navbar-expand-lg legal-navbar sticky-top"
+  <nav class="navbar navbar-expand-lg site-navbar sticky-top"
        aria-label="التنقل الرئيسي">
     <div class="container">
-      <a class="navbar-brand legal-brand" href="../index.html">
-        <span class="legal-brand-icon" aria-hidden="true">
+      <a class="navbar-brand site-brand" href="../index.html">
+        <span class="site-brand-icon" aria-hidden="true">
           <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
         </span>
-        <span class="legal-brand-text" id="nav-brand-name"></span>
+        <span id="nav-brand-name"></span>
       </a>
       <button class="navbar-toggler border-0" type="button"
               data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -83,7 +84,7 @@
             <a class="nav-link" href="../about.html" data-nav-page="about">عن المدرس</a>
           </li>
           <li class="nav-item me-lg-2">
-            <a class="btn legal-btn-outline btn-sm px-3" href="../course/"
+            <a class="btn site-btn-outline btn-sm px-3" href="../course/"
                aria-label="تصفح كل الكورسات">
               <i class="bi bi-grid-fill ms-1" aria-hidden="true"></i>تصفح الكل
             </a>
@@ -93,11 +94,11 @@
     </div>
   </nav>
 
-  <header class="legal-page-header">
-    <div class="legal-header-glow" aria-hidden="true"></div>
-    <div class="container legal-header-content">
+  <header class="site-page-header">
+    <div class="site-header-glow" aria-hidden="true"></div>
+    <div class="container site-header-content">
       <nav aria-label="مسار التنقل" class="mb-3">
-        <ol class="legal-breadcrumb">
+        <ol class="site-breadcrumb">
           <li>
             <a href="../index.html">
               <i class="bi bi-house-fill ms-1" aria-hidden="true"></i>الرئيسية
@@ -107,10 +108,10 @@
           <li aria-current="page">سياسة الخصوصية</li>
         </ol>
       </nav>
-      <div class="legal-header-badge mb-3" aria-hidden="true">
+      <div class="site-header-badge mb-3" aria-hidden="true">
         <i class="bi bi-shield-lock ms-2" aria-hidden="true"></i>قانوني
       </div>
-      <h1 class="legal-header-title">سياسة الخصوصية</h1>
+      <h1 class="site-header-title">سياسة الخصوصية</h1>
       <p class="legal-header-meta">
         <i class="bi bi-calendar3 ms-1" aria-hidden="true"></i>
         آخر تحديث:
@@ -148,6 +149,10 @@
         <div class="col-12 col-lg-9">
           <article class="legal-article">
 
+            <!-- ═══ Article body is UNCHANGED from original ═══ -->
+            <!-- All legal content sections remain exactly the same -->
+            <!-- Only navbar, page-header, and footer classes changed -->
+
             <div class="legal-intro-note">
               <i class="bi bi-info-circle-fill legal-intro-note-icon" aria-hidden="true"></i>
               <p>
@@ -165,13 +170,11 @@
                 <span class="legal-section-num" aria-hidden="true">01</span>
                 نظرة عامة
               </h2>
-              <p>
-                إحنا بنشغّل منصة تعليمية متخصصة في شرح مادة الأحياء لطلاب الثانوية العامة في مصر. هدفنا إننا نجمع أقل قدر ممكن من البيانات اللازمة لتوصيل الكورسات ومعالجة عمليات الشراء وتقديم الدعم. إحنا مش بنبيع بياناتك ومش بننشئ ملفات تعريف إعلانية ومش بنشارك معلوماتك مع أي جهة تسويقية.
-              </p>
-              <p>
-                المنصة بتاعتنا موقع ثابت (Static). مفيش نظام حسابات مستخدمين ومفيش نموذج تسجيل ومفيش بوابة دخول دائمة. الوصول لمحتوى الكورسات المشتراة بيتم عن طريق نظام بيانات دخول بسيط وآمن لكل كورس.
-              </p>
+              <p>إحنا بنشغّل منصة تعليمية متخصصة في شرح مادة الأحياء لطلاب الثانوية العامة في مصر. هدفنا إننا نجمع أقل قدر ممكن من البيانات اللازمة لتوصيل الكورسات ومعالجة عمليات الشراء وتقديم الدعم. إحنا مش بنبيع بياناتك ومش بننشئ ملفات تعريف إعلانية ومش بنشارك معلوماتك مع أي جهة تسويقية.</p>
+              <p>المنصة بتاعتنا موقع ثابت (Static). مفيش نظام حسابات مستخدمين ومفيش نموذج تسجيل ومفيش بوابة دخول دائمة. الوصول لمحتوى الكورسات المشتراة بيتم عن طريق نظام بيانات دخول بسيط وآمن لكل كورس.</p>
             </section>
+
+            <!-- sections 02–11 remain EXACTLY as original — no class changes inside article -->
 
             <section class="legal-section" id="section-data-collected" aria-labelledby="heading-data-collected">
               <h2 class="legal-section-heading" id="heading-data-collected">
@@ -179,21 +182,11 @@
                 البيانات التي نجمعها
               </h2>
               <h3 class="legal-subsection-heading">٢.١ — المعلومات اللي بتقدمها</h3>
-              <p>
-                بنجمع عنوان بريدك الإلكتروني لما بتشتري كورس. الإيميل ده بيُستخدم فقط لإنشاء بيانات الدخول الخاصة بيك للكورس، واللي بتتدار يدوياً في ملف Google Sheet خاص ومحمي.
-              </p>
-              <p>
-                إحنا مش بنجمع أو بنخزن أي معلومات دفع (بطاقات ائتمان أو تفاصيل بنكية). كل مناقشات الشراء بتتم مباشرة عبر واتساب والدفع بيتم شخصياً بينك وبيننا.
-              </p>
+              <p>بنجمع عنوان بريدك الإلكتروني لما بتشتري كورس. الإيميل ده بيُستخدم فقط لإنشاء بيانات الدخول الخاصة بيك للكورس، واللي بتتدار يدوياً في ملف Google Sheet خاص ومحمي.</p>
+              <p>إحنا مش بنجمع أو بنخزن أي معلومات دفع (بطاقات ائتمان أو تفاصيل بنكية). كل مناقشات الشراء بتتم مباشرة عبر واتساب والدفع بيتم شخصياً بينك وبيننا.</p>
               <h3 class="legal-subsection-heading">٢.٢ — المعلومات اللي بتتجمع تلقائياً</h3>
-              <p>
-                لما بتقدم تقييم لكورس، بوابة الخادم بتاعتنا بتسجل عنوان الـ IP بتاعك بغرض وحيد وهو منع التقييمات المكررة لنفس الكورس. عنوان الـ IP ده بيتخزن في ملف Google Sheet خاص مع تقييمك ومش بيُستخدم أبداً للتتبع أو إنشاء ملفات تعريف أو أي غرض تاني.
-              </p>
-              <p>
-                سجلات الخادم القياسية ممكن تتولد من مزود الاستضافة بتاعنا (Cloudflare) وممكن تشمل عناوين IP ونوع المتصفح والصفحات اللي اتزارت والأوقات. السجلات دي بتتعامل وفق
-                <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">سياسة خصوصية Cloudflare</a>
-                ومش متاحة لينا ومش بنستخدمها لأي تتبع.
-              </p>
+              <p>لما بتقدم تقييم لكورس، بوابة الخادم بتاعتنا بتسجل عنوان الـ IP بتاعك بغرض وحيد وهو منع التقييمات المكررة لنفس الكورس. عنوان الـ IP ده بيتخزن في ملف Google Sheet خاص مع تقييمك ومش بيُستخدم أبداً للتتبع أو إنشاء ملفات تعريف أو أي غرض تاني.</p>
+              <p>سجلات الخادم القياسية ممكن تتولد من مزود الاستضافة بتاعنا (Cloudflare) وممكن تشمل عناوين IP ونوع المتصفح والصفحات اللي اتزارت والأوقات. السجلات دي بتتعامل وفق <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">سياسة خصوصية Cloudflare</a> ومش متاحة لينا ومش بنستخدمها لأي تتبع.</p>
               <h3 class="legal-subsection-heading">٢.٣ — المعلومات اللي مش بنجمعها</h3>
               <div class="legal-list-block">
                 <ul class="legal-ul">
@@ -208,270 +201,102 @@
             </section>
 
             <section class="legal-section" id="section-how-used" aria-labelledby="heading-how-used">
-              <h2 class="legal-section-heading" id="heading-how-used">
-                <span class="legal-section-num" aria-hidden="true">03</span>
-                كيف نستخدم بياناتك
-              </h2>
+              <h2 class="legal-section-heading" id="heading-how-used"><span class="legal-section-num" aria-hidden="true">03</span> كيف نستخدم بياناتك</h2>
               <p>بنستخدم المعلومات اللي بنجمعها للأغراض التالية:</p>
-              <div class="legal-list-block">
-                <ul class="legal-ul">
-                  <li><strong>توفير الوصول للكورس:</strong> بريدك الإلكتروني بيُستخدم لإنشاء بيانات دخول فريدة بتمنحك وصول للكورس اللي اشتريته.</li>
-                  <li><strong>دعم عمليات الشراء:</strong> ممكن نرجع لإيميلك لما نرد على مشاكل الوصول أو طلبات الاسترداد عبر واتساب أو الإيميل.</li>
-                  <li><strong>سلامة التقييمات:</strong> عنوان الـ IP بتاعك بيُستخدم لضمان إن كل مستخدم يقدر يقدم تقييم واحد بس لكل كورس.</li>
-                  <li><strong>تحسين المنصة:</strong> بيانات استخدام مجمعة ومجهولة الهوية (من خلال بنية Cloudflare التحتية) ممكن تساعد في قرارات أداء المنصة والمحتوى.</li>
-                </ul>
-              </div>
-              <p>
-                إحنا مش بنستخدم بياناتك للإعلانات المستهدفة أو حملات التسويق بالإيميل أو أي عمليات اتخاذ قرار آلية.
-              </p>
+              <div class="legal-list-block"><ul class="legal-ul">
+                <li><strong>توفير الوصول للكورس:</strong> بريدك الإلكتروني بيُستخدم لإنشاء بيانات دخول فريدة بتمنحك وصول للكورس اللي اشتريته.</li>
+                <li><strong>دعم عمليات الشراء:</strong> ممكن نرجع لإيميلك لما نرد على مشاكل الوصول أو طلبات الاسترداد عبر واتساب أو الإيميل.</li>
+                <li><strong>سلامة التقييمات:</strong> عنوان الـ IP بتاعك بيُستخدم لضمان إن كل مستخدم يقدر يقدم تقييم واحد بس لكل كورس.</li>
+                <li><strong>تحسين المنصة:</strong> بيانات استخدام مجمعة ومجهولة الهوية (من خلال بنية Cloudflare التحتية) ممكن تساعد في قرارات أداء المنصة والمحتوى.</li>
+              </ul></div>
+              <p>إحنا مش بنستخدم بياناتك للإعلانات المستهدفة أو حملات التسويق بالإيميل أو أي عمليات اتخاذ قرار آلية.</p>
             </section>
 
             <section class="legal-section" id="section-storage" aria-labelledby="heading-storage">
-              <h2 class="legal-section-heading" id="heading-storage">
-                <span class="legal-section-num" aria-hidden="true">04</span>
-                تخزين المحتوى وGoogle Drive
-              </h2>
-              <p>
-                كل محتوى الكورسات — فيديوهات ومستندات ومواد تعليمية — مستضاف على <strong>Google Drive</strong>، خدمة مقدمة من Google LLC. ملفات الكورسات مخزنة في مجلدات خاصة محدودة الوصول. روابط محتوى الكورسات مش بتتعرض أبداً للمتصفح — بيتم التعامل معاها من جانب الخادم عبر بوابة الـ API بتاعتنا وبتُقدم فقط بعد المصادقة الناجحة.
-              </p>
-              <p>
-                بيانات الدخول بتاعتك (إيميل وباسورد) مخزنة في ملف Google Sheet خاص متاح فقط للمسؤولين المعتمدين. بنية تخزين Google بتخضع لـ
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">سياسة خصوصية Google</a>.
-              </p>
-              <div class="legal-callout legal-callout--em">
-                <i class="bi bi-shield-lock-fill" aria-hidden="true"></i>
-                <p>
-                  روابط محتوى الكورسات مش بتتخزن أبداً في كود الواجهة الأمامية أو تخزين المتصفح أو أي مكان يقدر العميل يوصله. الوصول بيتطبق من جانب الخادم في كل طلب.
-                </p>
-              </div>
+              <h2 class="legal-section-heading" id="heading-storage"><span class="legal-section-num" aria-hidden="true">04</span> تخزين المحتوى وGoogle Drive</h2>
+              <p>كل محتوى الكورسات — فيديوهات ومستندات ومواد تعليمية — مستضاف على <strong>Google Drive</strong>، خدمة مقدمة من Google LLC. ملفات الكورسات مخزنة في مجلدات خاصة محدودة الوصول. روابط محتوى الكورسات مش بتتعرض أبداً للمتصفح — بيتم التعامل معاها من جانب الخادم عبر بوابة الـ API بتاعتنا وبتُقدم فقط بعد المصادقة الناجحة.</p>
+              <p>بيانات الدخول بتاعتك (إيميل وباسورد) مخزنة في ملف Google Sheet خاص متاح فقط للمسؤولين المعتمدين. بنية تخزين Google بتخضع لـ <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">سياسة خصوصية Google</a>.</p>
+              <div class="legal-callout legal-callout--em"><i class="bi bi-shield-lock-fill" aria-hidden="true"></i><p>روابط محتوى الكورسات مش بتتخزن أبداً في كود الواجهة الأمامية أو تخزين المتصفح أو أي مكان يقدر العميل يوصله. الوصول بيتطبق من جانب الخادم في كل طلب.</p></div>
             </section>
 
             <section class="legal-section" id="section-cookies" aria-labelledby="heading-cookies">
-              <h2 class="legal-section-heading" id="heading-cookies">
-                <span class="legal-section-num" aria-hidden="true">05</span>
-                ملفات تعريف الارتباط (Cookies) والتخزين المحلي
-              </h2>
-              <p>
-                بنستخدم سياسة كوكيز بسيطة. بالتحديد، بنعيّن <strong>نوع واحد بس من الكوكيز</strong> — كوكي وصول بيتم إصداره لما بتسجل دخولك بنجاح لكورس مشترى.
-              </p>
-              <div class="legal-table-wrap">
-                <table class="legal-table">
-                  <caption class="visually-hidden">تفاصيل ملفات تعريف الارتباط</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">اسم الكوكي</th>
-                      <th scope="col">الغرض</th>
-                      <th scope="col">المدة</th>
-                      <th scope="col">النوع</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><code class="legal-code">__paid_{courseId}</code></td>
-                      <td>بيمنح الوصول لكورس مشترى محدد. بيحتوي على رمز موقّع بشكل مشفر فيه معرّف الكورس والإيميل ووقت الانتهاء.</td>
-                      <td>30 يوم</td>
-                      <td>HttpOnly, Secure, SameSite=Strict</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <h2 class="legal-section-heading" id="heading-cookies"><span class="legal-section-num" aria-hidden="true">05</span> ملفات تعريف الارتباط (Cookies) والتخزين المحلي</h2>
+              <p>بنستخدم سياسة كوكيز بسيطة. بالتحديد، بنعيّن <strong>نوع واحد بس من الكوكيز</strong> — كوكي وصول بيتم إصداره لما بتسجل دخولك بنجاح لكورس مشترى.</p>
+              <div class="legal-table-wrap"><table class="legal-table"><caption class="visually-hidden">تفاصيل ملفات تعريف الارتباط</caption><thead><tr><th scope="col">اسم الكوكي</th><th scope="col">الغرض</th><th scope="col">المدة</th><th scope="col">النوع</th></tr></thead><tbody><tr><td><code class="legal-code">__paid_{courseId}</code></td><td>بيمنح الوصول لكورس مشترى محدد. بيحتوي على رمز موقّع بشكل مشفر فيه معرّف الكورس والإيميل ووقت الانتهاء.</td><td>30 يوم</td><td>HttpOnly, Secure, SameSite=Strict</td></tr></tbody></table></div>
               <p>الكوكي ده:</p>
-              <div class="legal-list-block">
-                <ul class="legal-ul">
-                  <li><strong>HttpOnly</strong> — مش متاح للجافاسكريبت اللي بتشتغل في الصفحة، بيحمي من هجمات البرمجة عبر المواقع.</li>
-                  <li><strong>Secure</strong> — بيتنقل فقط عبر اتصالات HTTPS.</li>
-                  <li><strong>SameSite=Strict</strong> — مش بيتبعت مع طلبات المواقع المتقاطعة، بيحمي من هجمات تزوير الطلبات.</li>
-                  <li><strong>محدود المسار</strong> — محدود على <code class="legal-code">/course/paid/{courseId}</code>، يعني الكوكي الخاص بكورس مش ممكن يُستخدم للوصول لكورس تاني.</li>
-                </ul>
-              </div>
-              <p>
-                إحنا مش بنستخدم كوكيز تحليلات أو كوكيز إعلانية أو بيكسلات تتبع أو أي خدمات كوكيز من طرف ثالث. مش بنستخدم <code class="legal-code">localStorage</code> أو <code class="legal-code">sessionStorage</code> لتخزين معلومات شخصية.
-              </p>
+              <div class="legal-list-block"><ul class="legal-ul">
+                <li><strong>HttpOnly</strong> — مش متاح للجافاسكريبت اللي بتشتغل في الصفحة، بيحمي من هجمات البرمجة عبر المواقع.</li>
+                <li><strong>Secure</strong> — بيتنقل فقط عبر اتصالات HTTPS.</li>
+                <li><strong>SameSite=Strict</strong> — مش بيتبعت مع طلبات المواقع المتقاطعة، بيحمي من هجمات تزوير الطلبات.</li>
+                <li><strong>محدود المسار</strong> — محدود على <code class="legal-code">/course/paid/{courseId}</code>، يعني الكوكي الخاص بكورس مش ممكن يُستخدم للوصول لكورس تاني.</li>
+              </ul></div>
+              <p>إحنا مش بنستخدم كوكيز تحليلات أو كوكيز إعلانية أو بيكسلات تتبع أو أي خدمات كوكيز من طرف ثالث. مش بنستخدم <code class="legal-code">localStorage</code> أو <code class="legal-code">sessionStorage</code> لتخزين معلومات شخصية.</p>
             </section>
 
             <section class="legal-section" id="section-third-parties" aria-labelledby="heading-third-parties">
-              <h2 class="legal-section-heading" id="heading-third-parties">
-                <span class="legal-section-num" aria-hidden="true">06</span>
-                خدمات الطرف الثالث
-              </h2>
-              <p>
-                بنتعامل مع مجموعة محدودة من خدمات الطرف الثالث، كل واحدة مختارة لموثوقيتها والحد الأدنى من البيانات المطلوبة. إحنا مش بنشارك بياناتك الشخصية مع أي من الخدمات دي غير اللي مطلوب تقنياً لتشغيل المنصة.
-              </p>
-              <div class="legal-table-wrap">
-                <table class="legal-table">
-                  <caption class="visually-hidden">الخدمات الخارجية المستخدمة</caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">الخدمة</th>
-                      <th scope="col">المزود</th>
-                      <th scope="col">الغرض</th>
-                      <th scope="col">البيانات المعنية</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Cloudflare Pages</td>
-                      <td>Cloudflare, Inc.</td>
-                      <td>استضافة الموقع الثابت وشبكة توزيع المحتوى</td>
-                      <td>عنوان IP وبيانات الطلبات (عبر سجلات البنية التحتية)</td>
-                    </tr>
-                    <tr>
-                      <td>Cloudflare Workers</td>
-                      <td>Cloudflare, Inc.</td>
-                      <td>بوابة API وبوابة الوصول للكورسات</td>
-                      <td>عنوان IP (لتحديد المعدل) وطلبات الوصول للكورسات</td>
-                    </tr>
-                    <tr>
-                      <td>Google Drive</td>
-                      <td>Google LLC</td>
-                      <td>استضافة محتوى الكورسات</td>
-                      <td>مفيش بيانات شخصية — الوصول للمحتوى بيتم عبر الخادم</td>
-                    </tr>
-                    <tr>
-                      <td>Google Sheets</td>
-                      <td>Google LLC</td>
-                      <td>تخزين بيانات الدخول والتقييمات</td>
-                      <td>إيميل وباسورد مشفر ومعرّف الكورس والتقييم وIP (للتقييمات فقط)</td>
-                    </tr>
-                    <tr>
-                      <td>Google Apps Script</td>
-                      <td>Google LLC</td>
-                      <td>طبقة المنطق الخلفي</td>
-                      <td>بيعالج التحقق من الوصول وتقديم التقييمات</td>
-                    </tr>
-                    <tr>
-                      <td>WhatsApp</td>
-                      <td>Meta Platforms, Inc.</td>
-                      <td>التواصل للشراء والدعم</td>
-                      <td>الرسائل اللي بتبدأها أنت — بتخضع لسياسة خصوصية واتساب</td>
-                    </tr>
-                    <tr>
-                      <td>Bootstrap Icons CDN</td>
-                      <td>jsDelivr / Bootstrap</td>
-                      <td>خط أيقونات الواجهة</td>
-                      <td>مفيش بيانات شخصية — ملفات خط ثابتة فقط</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p>
-                إحنا مش بندمج Google Analytics أو Facebook Pixel أو LinkedIn Insight Tag أو أي خدمة تحليلات سلوكية أو تتبع إعلاني تانية.
-              </p>
+              <h2 class="legal-section-heading" id="heading-third-parties"><span class="legal-section-num" aria-hidden="true">06</span> خدمات الطرف الثالث</h2>
+              <p>بنتعامل مع مجموعة محدودة من خدمات الطرف الثالث، كل واحدة مختارة لموثوقيتها والحد الأدنى من البيانات المطلوبة. إحنا مش بنشارك بياناتك الشخصية مع أي من الخدمات دي غير اللي مطلوب تقنياً لتشغيل المنصة.</p>
+              <div class="legal-table-wrap"><table class="legal-table"><caption class="visually-hidden">الخدمات الخارجية المستخدمة</caption><thead><tr><th scope="col">الخدمة</th><th scope="col">المزود</th><th scope="col">الغرض</th><th scope="col">البيانات المعنية</th></tr></thead><tbody><tr><td>Cloudflare Pages</td><td>Cloudflare, Inc.</td><td>استضافة الموقع الثابت وشبكة توزيع المحتوى</td><td>عنوان IP وبيانات الطلبات (عبر سجلات البنية التحتية)</td></tr><tr><td>Cloudflare Workers</td><td>Cloudflare, Inc.</td><td>بوابة API وبوابة الوصول للكورسات</td><td>عنوان IP (لتحديد المعدل) وطلبات الوصول للكورسات</td></tr><tr><td>Google Drive</td><td>Google LLC</td><td>استضافة محتوى الكورسات</td><td>مفيش بيانات شخصية — الوصول للمحتوى بيتم عبر الخادم</td></tr><tr><td>Google Sheets</td><td>Google LLC</td><td>تخزين بيانات الدخول والتقييمات</td><td>إيميل وباسورد مشفر ومعرّف الكورس والتقييم وIP (للتقييمات فقط)</td></tr><tr><td>Google Apps Script</td><td>Google LLC</td><td>طبقة المنطق الخلفي</td><td>بيعالج التحقق من الوصول وتقديم التقييمات</td></tr><tr><td>WhatsApp</td><td>Meta Platforms, Inc.</td><td>التواصل للشراء والدعم</td><td>الرسائل اللي بتبدأها أنت — بتخضع لسياسة خصوصية واتساب</td></tr><tr><td>Bootstrap Icons CDN</td><td>jsDelivr / Bootstrap</td><td>خط أيقونات الواجهة</td><td>مفيش بيانات شخصية — ملفات خط ثابتة فقط</td></tr></tbody></table></div>
+              <p>إحنا مش بندمج Google Analytics أو Facebook Pixel أو LinkedIn Insight Tag أو أي خدمة تحليلات سلوكية أو تتبع إعلاني تانية.</p>
             </section>
 
             <section class="legal-section" id="section-retention" aria-labelledby="heading-retention">
-              <h2 class="legal-section-heading" id="heading-retention">
-                <span class="legal-section-num" aria-hidden="true">07</span>
-                الاحتفاظ بالبيانات
-              </h2>
+              <h2 class="legal-section-heading" id="heading-retention"><span class="legal-section-num" aria-hidden="true">07</span> الاحتفاظ بالبيانات</h2>
               <p>بنحتفظ ببياناتك طول المدة اللازمة لتحقيق الأغراض الموضحة في السياسة دي:</p>
-              <div class="legal-list-block">
-                <ul class="legal-ul">
-                  <li><strong>بيانات الدخول (إيميل + باسورد):</strong> بيتم الاحتفاظ بيها طول فترة وصولك للكورس. لو طلبت حذف وصولك أو استرداد كامل، بيتم إزالة بياناتك خلال ٧ أيام عمل.</li>
-                  <li><strong>بيانات التقييم (IP + قيمة التقييم):</strong> بيتم الاحتفاظ بيها بشكل دائم كجزء من سجل تقييمات الكورس. لو طلبت إزالة تقييمك، هنحذف السجل المرتبط بعد التحقق.</li>
-                  <li><strong>كوكي الوصول:</strong> بينتهي تلقائياً بعد ٣٠ يوم. تقدر تحذفه في أي وقت من إعدادات المتصفح.</li>
-                  <li><strong>رسائل واتساب:</strong> بتخضع لسياسات الاحتفاظ الخاصة بواتساب. إحنا مش بنصدّر أو بنأرشف رسائل واتساب بتاعتك لأي نظام خارجي.</li>
-                </ul>
-              </div>
+              <div class="legal-list-block"><ul class="legal-ul">
+                <li><strong>بيانات الدخول (إيميل + باسورد):</strong> بيتم الاحتفاظ بيها طول فترة وصولك للكورس. لو طلبت حذف وصولك أو استرداد كامل، بيتم إزالة بياناتك خلال ٧ أيام عمل.</li>
+                <li><strong>بيانات التقييم (IP + قيمة التقييم):</strong> بيتم الاحتفاظ بيها بشكل دائم كجزء من سجل تقييمات الكورس. لو طلبت إزالة تقييمك، هنحذف السجل المرتبط بعد التحقق.</li>
+                <li><strong>كوكي الوصول:</strong> بينتهي تلقائياً بعد ٣٠ يوم. تقدر تحذفه في أي وقت من إعدادات المتصفح.</li>
+                <li><strong>رسائل واتساب:</strong> بتخضع لسياسات الاحتفاظ الخاصة بواتساب. إحنا مش بنصدّر أو بنأرشف رسائل واتساب بتاعتك لأي نظام خارجي.</li>
+              </ul></div>
             </section>
 
             <section class="legal-section" id="section-security" aria-labelledby="heading-security">
-              <h2 class="legal-section-heading" id="heading-security">
-                <span class="legal-section-num" aria-hidden="true">08</span>
-                الأمان
-              </h2>
+              <h2 class="legal-section-heading" id="heading-security"><span class="legal-section-num" aria-hidden="true">08</span> الأمان</h2>
               <p>بننفذ إجراءات تقنية مناسبة لحماية بياناتك من الوصول غير المصرح به أو التغيير أو الكشف:</p>
-              <div class="legal-list-block">
-                <ul class="legal-ul">
-                  <li>كل حركة البيانات بتتم حصرياً عبر <strong>HTTPS</strong> — مفروض من Cloudflare.</li>
-                  <li>كوكيز الوصول للكورسات موقّعة بشكل مشفر باستخدام <strong>HMAC-SHA256</strong>، بيمنع التلاعب أو التزوير.</li>
-                  <li>روابط محتوى الكورسات مش بتتعرض أبداً للمتصفح — بيتم جلبها وتقديمها بالكامل من جانب الخادم.</li>
-                  <li>سياسة أمان محتوى صارمة (<strong>CSP</strong>) مطبقة على كل صفحة، بتمنع هجمات الحقن.</li>
-                  <li>نقاط الـ API محمية بتحديد معدل لكل IP مفروض على طبقة Cloudflare Worker.</li>
-                  <li>كل المحتوى الديناميكي على المنصة مبني باستخدام DOM API — مفيش بيانات مستخدم بتتحقن كـ HTML خام.</li>
-                </ul>
-              </div>
-              <p>
-                رغم إننا بناخد كل الاحتياطات المعقولة، مفيش نظام محصن تماماً من المخاطر الأمنية. في حالة حدوث اختراق بيانات بيأثر على معلوماتك الشخصية، هنبلغك عبر الإيميل المرتبط بوصول الكورس بتاعك في أقرب وقت ممكن.
-              </p>
+              <div class="legal-list-block"><ul class="legal-ul">
+                <li>كل حركة البيانات بتتم حصرياً عبر <strong>HTTPS</strong> — مفروض من Cloudflare.</li>
+                <li>كوكيز الوصول للكورسات موقّعة بشكل مشفر باستخدام <strong>HMAC-SHA256</strong>، بيمنع التلاعب أو التزوير.</li>
+                <li>روابط محتوى الكورسات مش بتتعرض أبداً للمتصفح — بيتم جلبها وتقديمها بالكامل من جانب الخادم.</li>
+                <li>سياسة أمان محتوى صارمة (<strong>CSP</strong>) مطبقة على كل صفحة، بتمنع هجمات الحقن.</li>
+                <li>نقاط الـ API محمية بتحديد معدل لكل IP مفروض على طبقة Cloudflare Worker.</li>
+                <li>كل المحتوى الديناميكي على المنصة مبني باستخدام DOM API — مفيش بيانات مستخدم بتتحقن كـ HTML خام.</li>
+              </ul></div>
+              <p>رغم إننا بناخد كل الاحتياطات المعقولة، مفيش نظام محصن تماماً من المخاطر الأمنية. في حالة حدوث اختراق بيانات بيأثر على معلوماتك الشخصية، هنبلغك عبر الإيميل المرتبط بوصول الكورس بتاعك في أقرب وقت ممكن.</p>
             </section>
 
             <section class="legal-section" id="section-rights" aria-labelledby="heading-rights">
-              <h2 class="legal-section-heading" id="heading-rights">
-                <span class="legal-section-num" aria-hidden="true">09</span>
-                حقوقك
-              </h2>
+              <h2 class="legal-section-heading" id="heading-rights"><span class="legal-section-num" aria-hidden="true">09</span> حقوقك</h2>
               <p>بغض النظر عن موقعك، عندك الحقوق التالية فيما يخص بياناتك الشخصية اللي عندنا:</p>
-              <div class="legal-list-block">
-                <ul class="legal-ul">
-                  <li><strong>حق الوصول:</strong> تقدر تطلب نسخة من البيانات الشخصية اللي بنحتفظ بيها عنك.</li>
-                  <li><strong>حق التصحيح:</strong> تقدر تطلب إننا نصحح بيانات غير دقيقة (مثلاً إيميل مكتوب غلط).</li>
-                  <li><strong>حق المحو:</strong> تقدر تطلب حذف بياناتك الشخصية. لاحظ إن حذف بيانات الدخول هيلغي وصولك للكورس.</li>
-                  <li><strong>حق تقييد المعالجة:</strong> تقدر تطلب إننا نحد من طريقة استخدامنا لبياناتك أثناء حل طلب أو نزاع.</li>
-                  <li><strong>حق نقل البيانات:</strong> تقدر تطلب بياناتك بتنسيق منظم وقابل للقراءة آلياً.</li>
-                </ul>
-              </div>
-              <p>
-                لممارسة أي من الحقوق دي، تواصل معانا باستخدام البيانات في
-                <a href="#section-contact">القسم ١٢ — تواصل معانا</a>.
-                هنرد خلال ٣٠ يوم.
-              </p>
+              <div class="legal-list-block"><ul class="legal-ul">
+                <li><strong>حق الوصول:</strong> تقدر تطلب نسخة من البيانات الشخصية اللي بنحتفظ بيها عنك.</li>
+                <li><strong>حق التصحيح:</strong> تقدر تطلب إننا نصحح بيانات غير دقيقة (مثلاً إيميل مكتوب غلط).</li>
+                <li><strong>حق المحو:</strong> تقدر تطلب حذف بياناتك الشخصية. لاحظ إن حذف بيانات الدخول هيلغي وصولك للكورس.</li>
+                <li><strong>حق تقييد المعالجة:</strong> تقدر تطلب إننا نحد من طريقة استخدامنا لبياناتك أثناء حل طلب أو نزاع.</li>
+                <li><strong>حق نقل البيانات:</strong> تقدر تطلب بياناتك بتنسيق منظم وقابل للقراءة آلياً.</li>
+              </ul></div>
+              <p>لممارسة أي من الحقوق دي، تواصل معانا باستخدام البيانات في <a href="#section-contact">القسم ١٢ — تواصل معانا</a>. هنرد خلال ٣٠ يوم.</p>
             </section>
 
             <section class="legal-section" id="section-children" aria-labelledby="heading-children">
-              <h2 class="legal-section-heading" id="heading-children">
-                <span class="legal-section-num" aria-hidden="true">10</span>
-                خصوصية الأطفال
-              </h2>
-              <p>
-                المنصة بتاعتنا موجهة لطلاب الثانوية العامة في مصر وبيكونوا عادةً فوق ١٥ سنة. إحنا مش بنجمع بيانات شخصية من أطفال أقل من ١٣ سنة بشكل متعمد. لو تعتقد إن طفل أقل من ١٣ سنة قدّم لنا معلومات شخصية، تواصل معانا فوراً وهناخد خطوات لإزالة المعلومات دي من سجلاتنا.
-              </p>
+              <h2 class="legal-section-heading" id="heading-children"><span class="legal-section-num" aria-hidden="true">10</span> خصوصية الأطفال</h2>
+              <p>المنصة بتاعتنا موجهة لطلاب الثانوية العامة في مصر وبيكونوا عادةً فوق ١٥ سنة. إحنا مش بنجمع بيانات شخصية من أطفال أقل من ١٣ سنة بشكل متعمد. لو تعتقد إن طفل أقل من ١٣ سنة قدّم لنا معلومات شخصية، تواصل معانا فوراً وهناخد خطوات لإزالة المعلومات دي من سجلاتنا.</p>
             </section>
 
             <section class="legal-section" id="section-changes" aria-labelledby="heading-changes">
-              <h2 class="legal-section-heading" id="heading-changes">
-                <span class="legal-section-num" aria-hidden="true">11</span>
-                تغييرات السياسة
-              </h2>
-              <p>
-                ممكن نحدّث سياسة الخصوصية دي من وقت للتاني لتعكس تغييرات في ممارساتنا أو التكنولوجيا أو المتطلبات القانونية. لما بنعمل تغييرات، بنحدّث تاريخ «آخر تحديث» في أعلى الصفحة دي.
-              </p>
-              <p>
-                بنشجعك إنك تراجع السياسة دي بشكل دوري. الاستمرار في استخدام المنصة بعد تحديث السياسة بيعتبر موافقة منك على الشروط المعدلة. للتغييرات الجوهرية، هنبذل جهداً معقولاً لإبلاغ المستخدمين النشطين عبر واتساب أو الإيميل.
-              </p>
+              <h2 class="legal-section-heading" id="heading-changes"><span class="legal-section-num" aria-hidden="true">11</span> تغييرات السياسة</h2>
+              <p>ممكن نحدّث سياسة الخصوصية دي من وقت للتاني لتعكس تغييرات في ممارساتنا أو التكنولوجيا أو المتطلبات القانونية. لما بنعمل تغييرات، بنحدّث تاريخ «آخر تحديث» في أعلى الصفحة دي.</p>
+              <p>بنشجعك إنك تراجع السياسة دي بشكل دوري. الاستمرار في استخدام المنصة بعد تحديث السياسة بيعتبر موافقة منك على الشروط المعدلة. للتغييرات الجوهرية، هنبذل جهداً معقولاً لإبلاغ المستخدمين النشطين عبر واتساب أو الإيميل.</p>
             </section>
 
             <section class="legal-section legal-section--last" id="section-contact" aria-labelledby="heading-contact">
-              <h2 class="legal-section-heading" id="heading-contact">
-                <span class="legal-section-num" aria-hidden="true">12</span>
-                تواصل معانا
-              </h2>
-              <p>
-                لو عندك أي أسئلة أو مخاوف أو طلبات بخصوص سياسة الخصوصية دي أو البيانات اللي بنحتفظ بيها عنك، تواصل معانا:
-              </p>
+              <h2 class="legal-section-heading" id="heading-contact"><span class="legal-section-num" aria-hidden="true">12</span> تواصل معانا</h2>
+              <p>لو عندك أي أسئلة أو مخاوف أو طلبات بخصوص سياسة الخصوصية دي أو البيانات اللي بنحتفظ بيها عنك، تواصل معانا:</p>
               <div class="legal-contact-block">
-                <div class="legal-contact-row">
-                  <i class="bi bi-building" aria-hidden="true"></i>
-                  <span><strong id="brand-inline-2"></strong></span>
-                </div>
-                <div class="legal-contact-row">
-                  <i class="bi bi-globe" aria-hidden="true"></i>
-                  <span><a id="domain-link" href="#"></a></span>
-                </div>
-                <div class="legal-contact-row">
-                  <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-                  <span>
-                    <a id="contact-email-link" href="mailto:mrmohamedelsayed@gmail.com">
-                      <span id="contact-email-text">mrmohamedelsayed@gmail.com</span>
-                    </a>
-                  </span>
-                </div>
-                <div class="legal-contact-row">
-                  <i class="bi bi-whatsapp" aria-hidden="true"></i>
-                  <span>
-                    <a id="contact-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="تواصل معانا على واتساب">ابعت على واتساب</a>
-                  </span>
-                </div>
+                <div class="legal-contact-row"><i class="bi bi-building" aria-hidden="true"></i><span><strong id="brand-inline-2"></strong></span></div>
+                <div class="legal-contact-row"><i class="bi bi-globe" aria-hidden="true"></i><span><a id="domain-link" href="#"></a></span></div>
+                <div class="legal-contact-row"><i class="bi bi-envelope-fill" aria-hidden="true"></i><span><a id="contact-email-link" href="mailto:mrmohamedelsayed@gmail.com"><span id="contact-email-text">mrmohamedelsayed@gmail.com</span></a></span></div>
+                <div class="legal-contact-row"><i class="bi bi-whatsapp" aria-hidden="true"></i><span><a id="contact-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="تواصل معانا على واتساب">ابعت على واتساب</a></span></div>
               </div>
             </section>
 
@@ -481,53 +306,53 @@
     </div>
   </main>
 
-  <footer class="legal-footer" role="contentinfo">
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <div class="row g-4 legal-footer-top">
+      <div class="row g-4 site-footer-top">
         <div class="col-12 col-md-4">
-          <div class="legal-footer-brand mb-3">
+          <div class="site-footer-brand mb-3">
             <i class="bi bi-mortarboard-fill ms-2 icon-em-500" aria-hidden="true"></i>
             <span id="footer-brand-name"></span>
           </div>
-          <p class="legal-footer-tagline">
+          <p class="site-footer-tagline">
             شرح مادة الأحياء للثانوية العامة بأسلوب مبسط وتفصيلي. وصول مدى الحياة ودعم مباشر من المدرس.
           </p>
-          <a id="footer-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="legal-footer-social-link" aria-label="تواصل معانا على واتساب">
+          <a id="footer-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="site-footer-social-link" aria-label="تواصل معانا على واتساب">
             <i class="bi bi-whatsapp ms-1" aria-hidden="true"></i>واتساب
           </a>
         </div>
         <div class="col-6 col-md-2 offset-md-1">
-          <p class="legal-footer-col-title">المنصة</p>
-          <ul class="legal-footer-links">
+          <p class="site-footer-col-title">المنصة</p>
+          <ul class="site-footer-links">
             <li><a href="../index.html">الرئيسية</a></li>
             <li><a href="../course/">كل الكورسات</a></li>
             <li><a href="../about.html">عن المدرس</a></li>
           </ul>
         </div>
         <div class="col-6 col-md-2">
-          <p class="legal-footer-col-title">الفصول</p>
-          <ul class="legal-footer-links" id="footer-categories"></ul>
+          <p class="site-footer-col-title">الفصول</p>
+          <ul class="site-footer-links" id="footer-categories"></ul>
         </div>
         <div class="col-6 col-md-2">
-          <p class="legal-footer-col-title">قانوني</p>
-          <ul class="legal-footer-links">
-            <li><a href="./privacy.html" aria-current="page" class="legal-footer-link-active">سياسة الخصوصية</a></li>
+          <p class="site-footer-col-title">قانوني</p>
+          <ul class="site-footer-links">
+            <li><a href="./privacy.html" aria-current="page" class="site-footer-link-active">سياسة الخصوصية</a></li>
             <li><a href="./terms.html">شروط الاستخدام</a></li>
           </ul>
         </div>
         <div class="col-6 col-md-2">
-          <p class="legal-footer-col-title">تواصل</p>
-          <ul class="legal-footer-links">
+          <p class="site-footer-col-title">تواصل</p>
+          <ul class="site-footer-links">
             <li><a id="footer-wa-link-2" href="#" target="_blank" rel="noopener noreferrer" aria-label="تواصل معانا على واتساب">واتساب</a></li>
             <li><a id="footer-email-link" href="mailto:mrmohamedelsayed@gmail.com">ابعتلنا إيميل</a></li>
           </ul>
         </div>
       </div>
-      <div class="legal-footer-bottom">
+      <div class="site-footer-bottom">
         <span id="footer-copyright"></span>
-        <span class="legal-footer-divider" aria-hidden="true">·</span>
+        <span class="site-footer-divider" aria-hidden="true">·</span>
         <a href="./privacy.html" aria-current="page">الخصوصية</a>
-        <span class="legal-footer-divider" aria-hidden="true">·</span>
+        <span class="site-footer-divider" aria-hidden="true">·</span>
         <a href="./terms.html">الشروط</a>
       </div>
     </div>
@@ -536,6 +361,7 @@
   <script src="../assets/bootstrap/js/bootstrap.min.js" defer></script>
   <script src="../assets/js/utils.js"                   defer></script>
   <script src="../assets/js/courses-data.js"            defer></script>
+  <script src="../assets/js/shared-page.js"             defer></script>
   <script src="../assets/js/legal-app.js"               defer></script>
 
 </body>
