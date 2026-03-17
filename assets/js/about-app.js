@@ -1,211 +1,105 @@
+/* ── Upgrade Summary ──
+   - COMPLETE REWRITE — was a duplicate of legal-app.js (Arabic variant)
+   - Now serves ONLY about.html — no longer handles legal pages
+   - Uses SharedPage (SP) for: buildNavBrand, buildFooter, buildFooterCategories,
+     buildWhatsAppLinks, buildEmailLinks, injectBaseSEO, injectJsonLd,
+     markCurrentNavLink, buildCopyrightText
+   - All hardcoded Arabic strings moved to COURSE_DATA.META where brand-specific
+   - Footer tagline from META.footerTagline
+   - Copyright via SP.buildCopyrightText() (unified formatYear)
+   - Reduced from ~180 lines to ~95 lines by leveraging SharedPage
+   - Added U.announce() on page load
+   - JSON-LD: ProfilePage schema for about page (more specific than WebPage)
+   - SEO: Arabic title/description, inLanguage: 'ar', hreflang-ar
+   ── End Summary ── */
+
 'use strict';
 
 (function () {
 
+  /* ── Guard & Aliases ── */
+
   var U    = window.Utils;
   var DATA = window.COURSE_DATA;
+  var SP   = window.SharedPage;
 
-  if (!U || !DATA) {
-    console.error('legal-app: dependencies missing.');
+  if (!U || !DATA || !SP) {
+    console.error('about-app: dependencies missing.');
     return;
   }
 
   var META = DATA.META;
 
-  function buildWhatsAppUrl(phone, message) {
-    var base = 'https://wa.me/' + encodeURIComponent(phone);
-    if (message) base += '?text=' + encodeURIComponent(message);
-    return U.sanitizeUrl(base);
-  }
+  /* ── Path Constants (relative from /) ── */
 
-  function setText(id, text) {
-    var el = document.getElementById(id);
-    if (el) el.textContent = text;
-  }
+  var COURSE_BASE = './course/';
 
-  function setHref(id, href) {
-    var el = document.getElementById(id);
-    if (el) el.href = U.sanitizeUrl(href);
-  }
-
-  function setAttr(id, attr, val) {
-    var el = document.getElementById(id);
-    if (el) el.setAttribute(attr, val);
-  }
+  /* ── SEO ── */
 
   function injectSEO() {
-    var brand   = DATA.BRAND_NAME;
-    var domain  = DATA.DOMAIN;
-    var base    = 'https://' + domain;
+    var base      = 'https://' + DATA.DOMAIN;
+    var pageUrl   = base + '/about.html';
+    var pageTitle = 'عن المدرس \u2014 ' + DATA.BRAND_NAME;
+    var pageDesc  = META.descriptionShort + ' \u2014 تعرف على المدرس ورؤيتنا وطريقة عملنا.';
 
-    var isTerms   = window.location.pathname.indexOf('terms') !== -1;
-    var pageSlug  = isTerms ? 'terms.html' : 'privacy.html';
-    var pageUrl   = base + '/legal/' + pageSlug;
-    var pageImage = base + META.ogImage;
-
-    var pageTitle, pageDesc;
-
-    if (isTerms) {
-      pageTitle = 'شروط الاستخدام \u2014 ' + brand;
-      pageDesc  = META.descriptionShort + ' \u2014 شروط الاستخدام';
-    } else {
-      pageTitle = 'سياسة الخصوصية \u2014 ' + brand;
-      pageDesc  = META.descriptionShort + ' \u2014 سياسة الخصوصية';
-    }
-
-    document.title = pageTitle;
-
-    setAttr('page-desc',     'content', pageDesc);
-    setAttr('page-canonical','href',    pageUrl);
-
-    setAttr('og-url',       'content', pageUrl);
-    setAttr('og-title',     'content', pageTitle);
-    setAttr('og-desc',      'content', pageDesc);
-    setAttr('og-image',     'content', pageImage);
-    setAttr('og-site-name', 'content', brand);
-
-    setAttr('tw-title', 'content', pageTitle);
-    setAttr('tw-desc',  'content', pageDesc);
-    setAttr('tw-image', 'content', pageImage);
-
-    var hreflang = document.getElementById('hreflang-ar')
-      || document.querySelector('link[rel="alternate"][hreflang="ar"]');
-    if (hreflang) hreflang.setAttribute('href', pageUrl);
-
-    var schema = {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      '@id': pageUrl + '#webpage',
-      'url': pageUrl,
-      'name': pageTitle,
-      'description': pageDesc,
-      'isPartOf': { '@id': base + '/#website' },
-      'inLanguage': 'ar',
-      'dateModified': META.legalLastUpdated || '2026-03-10'
-    };
-
-    var script = U.el('script', { type: 'application/ld+json', textContent: JSON.stringify(schema, null, 2) });
-    document.head.appendChild(script);
-  }
-
-  function buildNavBrand() {
-    setText('nav-brand-name', DATA.BRAND_NAME);
-  }
-
-  function buildInlineBrandDomain() {
-    var brand  = DATA.BRAND_NAME;
-    var domain = DATA.DOMAIN;
-    var base   = 'https://' + domain;
-
-    ['brand-inline-1','brand-inline-2','brand-inline-3',
-     'brand-inline-4','brand-inline-5','brand-inline-6'
-    ].forEach(function (id) { setText(id, brand); });
-
-    setText('domain-inline-1',     domain);
-    setText('legal-domain-inline', domain);
-
-    var domainLink = document.getElementById('domain-link');
-    if (domainLink) {
-      domainLink.textContent = domain;
-      domainLink.href        = U.sanitizeUrl(base);
-    }
-
-    var termsLink = document.getElementById('terms-url-link');
-    if (termsLink) {
-      var termsUrl = base + '/legal/terms.html';
-      termsLink.textContent = termsUrl;
-      termsLink.href        = U.sanitizeUrl(termsUrl);
-    }
-  }
-
-  function buildEmailLinks() {
-    var email  = META.supportEmail;
-    var mailto = 'mailto:' + email;
-
-    var contactLink = document.getElementById('contact-email-link');
-    if (contactLink) contactLink.href = U.sanitizeUrl(mailto);
-
-    var contactText = document.getElementById('contact-email-text');
-    if (contactText) contactText.textContent = email;
-
-    var footerLink = document.getElementById('footer-email-link');
-    if (footerLink) footerLink.href = U.sanitizeUrl(mailto);
-  }
-
-  function buildWhatsAppLinks() {
-    var message = (META.whatsappDefaultMessage)
-      ? META.whatsappDefaultMessage
-      : 'مرحباً! عندي سؤال عن الكورسات.';
-
-    var url = buildWhatsAppUrl(DATA.WHATSAPP_NUMBER, message);
-
-    ['contact-whatsapp-link',
-     'footer-whatsapp-link',
-     'footer-wa-link-2'
-    ].forEach(function (id) { setHref(id, url); });
-  }
-
-  function buildFooter() {
-    var brandEl = document.getElementById('footer-brand-name');
-    var copyrEl = document.getElementById('footer-copyright');
-    if (brandEl) brandEl.textContent = DATA.BRAND_NAME;
-    if (copyrEl) copyrEl.textContent =
-      '© ' + U.formatYear(new Date().getFullYear()) + ' ' +
-      DATA.BRAND_NAME + '. جميع الحقوق محفوظة.';
-  }
-
-  function buildFooterCategories() {
-    var container = document.getElementById('footer-categories');
-    if (!container) return;
-
-    var counts = {};
-    DATA.courses.forEach(function (c) {
-      if (!c.category) return;
-      counts[c.category] = (counts[c.category] || 0) + 1;
+    SP.injectBaseSEO({
+      pageTitle:   pageTitle,
+      pageDesc:    pageDesc,
+      pageUrl:     pageUrl,
+      pageImage:   base + META.ogImage,
+      brand:       DATA.BRAND_NAME,
+      hreflangId:  'hreflang-ar'
     });
 
-    var names = Object.keys(counts);
-    if (!names.length) return;
-
-    names.forEach(function (name) {
-      var href = '../course/?category=' + encodeURIComponent(name);
-      var li = U.el('li', null, [
-        U.el('a', { href: U.sanitizeUrl(href), textContent: name })
-      ]);
-      container.appendChild(li);
+    SP.markCurrentNavLink(function (href) {
+      return href && href.indexOf('about') !== -1;
     });
-  }
 
-  function initTocScroll() {
-    var toc = U.qs('.legal-toc');
-    if (!toc) return;
-
-    toc.addEventListener('click', function (e) {
-      var anchor = e.target.closest('a[href^="#"]');
-      if (!anchor) return;
-
-      var targetId = anchor.getAttribute('href').slice(1);
-      var target   = document.getElementById(targetId);
-      if (!target) return;
-
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      if (history.replaceState) {
-        history.replaceState(null, '', '#' + targetId);
+    /* JSON-LD — ProfilePage */
+    SP.injectJsonLd({
+      '@context':     'https://schema.org',
+      '@type':        'ProfilePage',
+      '@id':          pageUrl + '#webpage',
+      'url':          pageUrl,
+      'name':         pageTitle,
+      'description':  pageDesc,
+      'isPartOf':     { '@id': base + '/#website' },
+      'inLanguage':   'ar',
+      'mainEntity': {
+        '@type':      'Person',
+        'name':       DATA.BRAND_NAME,
+        'jobTitle':   META.tagline,
+        'url':        base,
+        'worksFor': {
+          '@type': 'Organization',
+          'name':  DATA.BRAND_NAME,
+          'url':   base
+        }
       }
-    });
+    }, 'jsonld-about');
   }
+
+  /* ── WhatsApp CTA ── */
+
+  function buildWhatsAppCTA() {
+    SP.buildWhatsAppLinks([
+      'contact-whatsapp-btn',
+      'footer-whatsapp-link',
+      'footer-wa-link-2'
+    ]);
+  }
+
+  /* ── Init ── */
 
   function init() {
     injectSEO();
-    buildNavBrand();
-    buildInlineBrandDomain();
-    buildEmailLinks();
-    buildWhatsAppLinks();
-    buildFooter();
-    buildFooterCategories();
-    initTocScroll();
+    SP.buildNavBrand();
+    SP.buildEmailLinks();
+    buildWhatsAppCTA();
+    SP.buildFooterCategories(COURSE_BASE);
+    SP.buildFooter();
+
+    U.announce('صفحة عن المدرس');
   }
 
   if (document.readyState === 'loading') {

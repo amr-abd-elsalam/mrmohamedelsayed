@@ -1,190 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    about.css  —  Styles for about.html (Forest Green theme)
-   Depends on CSS variables defined in courses.css
+   Depends on: courses.css (variables), components.css (navbar, footer, page-header, buttons)
    NO variable redefinitions here.
    ═══════════════════════════════════════════════════════════════ */
-
-/* ───────────────────────────────────────────
-   NAVBAR  (mirrors home.css navbar)
-─────────────────────────────────────────── */
-
-.about-navbar {
-  background-color: rgba(7, 13, 8, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.75rem 0;
-  transition: background-color var(--transition-base);
-}
-
-.about-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--text-primary) !important;
-}
-
-.about-brand-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: linear-gradient(135deg, var(--em-600), var(--teal-600));
-  border-radius: 6px;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.about-navbar .nav-link {
-  color: var(--text-secondary) !important;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.4rem 0.75rem !important;
-  border-radius: 6px;
-  transition: color var(--transition-fast), background-color var(--transition-fast);
-}
-
-.about-navbar .nav-link:hover {
-  color: var(--em-400) !important;
-  background-color: var(--bg-elevated);
-}
-
-.about-nav-active {
-  color: var(--em-400) !important;
-  background-color: var(--bg-elevated) !important;
-}
-
-/* ───────────────────────────────────────────
-   SHARED BUTTONS
-─────────────────────────────────────────── */
-
-.about-btn-outline {
-  color: var(--em-400) !important;
-  border: 1px solid var(--em-700) !important;
-  background: transparent !important;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all var(--transition-fast);
-}
-
-.about-btn-outline:hover {
-  background: var(--em-900) !important;
-  border-color: var(--em-500) !important;
-  color: var(--em-300) !important;
-}
-
-.about-btn-wa {
-  background: #25D366;
-  border: none;
-  color: #fff !important;
-  font-weight: 600;
-  border-radius: 10px;
-  padding: 0.65rem 1.5rem;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.about-btn-wa:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-  color: #fff !important;
-}
-
-/* ───────────────────────────────────────────
-   PAGE HEADER
-─────────────────────────────────────────── */
-
-.about-page-header {
-  position: relative;
-  background-color: var(--bg-primary);
-  padding: 3.5rem 0 3rem;
-  border-bottom: 1px solid var(--border-color);
-  overflow: hidden;
-}
-
-.about-header-glow {
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(46, 125, 50, 0.08) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.about-header-content {
-  position: relative;
-  z-index: 1;
-}
-
-.about-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.82rem;
-}
-
-.about-breadcrumb li {
-  display: flex;
-  align-items: center;
-  color: var(--text-muted);
-}
-
-.about-breadcrumb a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.about-breadcrumb a:hover {
-  color: var(--em-400);
-}
-
-.about-breadcrumb li[aria-current="page"] {
-  color: var(--em-400);
-  font-weight: 600;
-}
-
-.about-header-badge {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(46, 125, 50, 0.08);
-  border: 1px solid rgba(46, 125, 50, 0.2);
-  color: var(--em-400);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.35rem 1rem;
-  border-radius: 20px;
-}
-
-.about-header-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-
-.about-header-subtitle {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 500px;
-  line-height: 1.65;
-  margin: 0;
-}
 
 /* ───────────────────────────────────────────
    SECTIONS SHARED
@@ -370,7 +188,7 @@
 .about-visual-glow {
   position: absolute;
   bottom: -20%;
-  right: -10%;
+  inset-inline-end: -10%;
   width: 300px;
   height: 300px;
   background: radial-gradient(ellipse, rgba(46, 125, 50, 0.08) 0%, transparent 65%);
@@ -408,7 +226,7 @@
 .about-how-step {
   position: absolute;
   top: 0.85rem;
-  right: 1.1rem;
+  inset-inline-end: 1.1rem;
   font-size: 3.2rem;
   font-weight: 900;
   color: rgba(46, 125, 50, 0.06);
@@ -622,106 +440,6 @@
 }
 
 /* ───────────────────────────────────────────
-   FOOTER
-─────────────────────────────────────────── */
-
-.about-footer {
-  background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  padding-top: 3.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.about-footer-brand {
-  display: flex;
-  align-items: center;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.about-footer-tagline {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-  max-width: 300px;
-}
-
-.about-footer-social-link {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.85rem;
-  color: var(--em-400);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color var(--transition-fast);
-}
-
-.about-footer-social-link:hover {
-  color: var(--em-300);
-}
-
-.about-footer-col-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-}
-
-.about-footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.about-footer-links a {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.about-footer-links a:hover {
-  color: var(--em-400);
-}
-
-.about-footer-top {
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.about-footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding-top: 1.5rem;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-}
-
-.about-footer-bottom a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.about-footer-bottom a:hover {
-  color: var(--em-400);
-}
-
-.about-footer-divider {
-  opacity: 0.4;
-}
-
-/* ───────────────────────────────────────────
    RESPONSIVE
 ─────────────────────────────────────────── */
 
@@ -729,15 +447,11 @@
   .about-section {
     padding: 4rem 0;
   }
-}
 
-@media (max-width: 991.98px) {
   .about-contact-section {
     padding-bottom: 4.5rem;
   }
-}
 
-@media (max-width: 991.98px) {
   .about-visual-panel {
     margin-top: 2rem;
   }
@@ -747,60 +461,34 @@
   .about-section {
     padding: 3.5rem 0;
   }
-}
 
-@media (max-width: 767px) {
-  .about-page-header {
-    padding: 2.5rem 0 2rem;
-  }
-}
-
-@media (max-width: 767px) {
   .about-visual-inner {
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
-}
 
-@media (max-width: 767px) {
   .about-visual-stat {
     padding: 1.1rem 0.75rem;
   }
-}
 
-@media (max-width: 767px) {
   .about-visual-stat-num {
     font-size: 1.2rem;
   }
-}
 
-@media (max-width: 767px) {
   .about-how-card {
     padding: 1.4rem 1.1rem;
   }
-}
 
-@media (max-width: 767px) {
   .about-contact-card {
     padding: 1.5rem 1.25rem;
   }
 }
 
 @media (max-width: 575px) {
-  .about-header-title {
+  .site-header-title {
     font-size: clamp(1.7rem, 8vw, 2.2rem);
   }
-}
 
-@media (max-width: 575px) {
-  .about-footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.4rem;
-  }
-}
-
-@media (max-width: 575px) {
   .about-note {
     flex-direction: column;
     gap: 0.75rem;

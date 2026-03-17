@@ -1,0 +1,389 @@
+/* ═══════════════════════════════════════════════════════════════
+   components.css — Shared UI components across all pages
+   Depends on CSS variables defined in courses.css
+   NO variable redefinitions here.
+
+   Components included:
+   - Site Navbar (glassmorphic, sticky)
+   - Site Footer (grid, links, copyright)
+   - Site Page Header (title, breadcrumb, glow)
+   - Shared Buttons (primary, ghost, outline, whatsapp)
+
+   Usage:
+   <link rel="stylesheet" href="courses.css">
+   <link rel="stylesheet" href="components.css">
+   <link rel="stylesheet" href="[page].css">
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────
+   NAVBAR
+─────────────────────────────────────────── */
+
+.site-navbar {
+  background-color: rgba(7, 13, 8, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+  transition: background-color var(--transition-base);
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary) !important;
+}
+
+.site-brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--em-600), var(--teal-600));
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.site-navbar .nav-link {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: 6px;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-navbar .nav-link:hover {
+  color: var(--em-400) !important;
+  background-color: var(--bg-elevated);
+}
+
+.site-nav-active {
+  color: var(--em-400) !important;
+  background-color: var(--bg-elevated) !important;
+}
+
+/* ───────────────────────────────────────────
+   SHARED BUTTONS
+─────────────────────────────────────────── */
+
+/* outline button (nav + general) */
+
+.site-btn-outline {
+  color: var(--em-400) !important;
+  border: 1px solid var(--em-700) !important;
+  background: transparent !important;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-btn-outline:hover {
+  background: var(--em-900) !important;
+  border-color: var(--em-500) !important;
+  color: var(--em-300) !important;
+}
+
+/* primary gradient button */
+
+.site-btn-primary {
+  background: linear-gradient(135deg, var(--em-600) 0%, var(--teal-600) 100%);
+  border: none;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.65rem 1.5rem;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(46, 125, 50, 0.25);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(46, 125, 50, 0.35);
+}
+
+/* ghost button */
+
+.site-btn-ghost {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 0.65rem 1.5rem;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-btn-ghost:hover {
+  border-color: var(--em-700);
+  color: var(--em-400) !important;
+  background: var(--bg-card);
+}
+
+/* whatsapp button */
+
+.site-btn-whatsapp {
+  background: #25D366;
+  border: none;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.65rem 1.5rem;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.site-btn-whatsapp:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: #fff !important;
+}
+
+/* ───────────────────────────────────────────
+   PAGE HEADER
+─────────────────────────────────────────── */
+
+.site-page-header {
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.site-header-glow {
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  inset-inline-end: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(46, 125, 50, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.site-header-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* breadcrumb */
+
+.site-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+.site-breadcrumb li {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.site-breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-breadcrumb a:hover {
+  color: var(--em-400);
+}
+
+.site-breadcrumb li[aria-current="page"] {
+  color: var(--em-400);
+  font-weight: 600;
+}
+
+/* header badge */
+
+.site-header-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(46, 125, 50, 0.08);
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  color: var(--em-400);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+}
+
+/* header title */
+
+.site-header-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+/* header subtitle */
+
+.site-header-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ───────────────────────────────────────────
+   FOOTER
+─────────────────────────────────────────── */
+
+.site-footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding-top: 3.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.site-footer-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.site-footer-tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  max-width: 300px;
+}
+
+.site-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--em-400);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+  min-height: var(--touch-min);
+}
+
+.site-footer-social-link:hover {
+  color: var(--em-300);
+}
+
+.site-footer-col-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.site-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.site-footer-links a {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-footer-links a:hover {
+  color: var(--em-400);
+}
+
+.site-footer-link-active {
+  color: var(--em-400) !important;
+}
+
+.site-footer-top {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.site-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.site-footer-bottom a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-footer-bottom a:hover {
+  color: var(--em-400);
+}
+
+.site-footer-divider {
+  opacity: 0.4;
+}
+
+/* ───────────────────────────────────────────
+   RESPONSIVE
+─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .site-page-header {
+    padding: 2.5rem 0 2rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .site-footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.4rem;
+  }
+}

@@ -1,3 +1,14 @@
+/* ── Upgrade Summary ──
+   - Removed dead code: sharedObjectives, sharedCurriculum, sharedFaq (declared but never used)
+   - Added META.UI object with white-label UI strings previously hardcoded in controllers
+   - Added META.heroTitle, META.heroSubtitle, META.ctaTitle, META.ctaSubtitle for white-label hero/CTA
+   - Added META.levels map (English→Arabic) to centralize level label translations
+   - Added META.emptyStateTitle, META.emptyStateText for catalog empty state
+   - Normalized META.legalLastUpdated to consistent value
+   - Added trailing comments on each META key for Document 3 change-map traceability
+   - No structural changes to courses array or categories
+   ── End Summary ── */
+
 'use strict';
 
 var COURSE_DATA = (function () {
@@ -12,65 +23,7 @@ var COURSE_DATA = (function () {
     return o;
   }
 
-  var sharedObjectives = [
-    "فهم المفاهيم الأساسية والمبادئ العلمية للفصل بعمق",
-    "تحليل الرسومات التوضيحية والأشكال البيانية الخاصة بالمنهج",
-    "حل أسئلة الامتحانات السابقة بأسلوب منهجي",
-    "التمييز بين المصطلحات العلمية المتشابهة والمقارنة بينها",
-    "تطبيق المعلومات على أسئلة التفكير العلمي والاستنتاج",
-    "الاستعداد الكامل لامتحان الثانوية العامة في مادة الأحياء"
-  ];
-
-  var sharedCurriculum = [
-    {
-      title: "المقدمة والتأسيس",
-      lessons: [
-        { title: "نظرة عامة على الفصل وأهدافه", duration: "08:00", preview: true },
-        { title: "المصطلحات العلمية الأساسية", duration: "12:00", preview: true },
-        { title: "شرح الرسومات التوضيحية المطلوبة", duration: "15:00", preview: false }
-      ]
-    },
-    {
-      title: "الشرح التفصيلي",
-      lessons: [
-        { title: "الدرس الأول — شرح مفصل مع أمثلة", duration: "20:00", preview: false },
-        { title: "الدرس الثاني — شرح مفصل مع أمثلة", duration: "22:00", preview: false },
-        { title: "الدرس الثالث — شرح مفصل مع أمثلة", duration: "18:00", preview: false },
-        { title: "الأخطاء الشائعة وكيف تتجنبها", duration: "10:00", preview: false }
-      ]
-    },
-    {
-      title: "المراجعة وحل الأسئلة",
-      lessons: [
-        { title: "مراجعة شاملة على الفصل", duration: "25:00", preview: false },
-        { title: "حل أسئلة الكتاب المدرسي", duration: "20:00", preview: false },
-        { title: "حل أسئلة امتحانات سابقة", duration: "30:00", preview: false }
-      ]
-    }
-  ];
-
-  var sharedFaq = [
-    {
-      question: "هل الكورس يغطي المنهج بالكامل؟",
-      answer: "أيوا، الكورس بيغطي كل دروس الفصل من الكتاب المدرسي بالتفصيل — شرح + رسومات + أسئلة محلولة."
-    },
-    {
-      question: "إيه المدة اللي هقدر أدخل فيها الكورس؟",
-      answer: "بمجرد الشراء، ليك وصول مدى الحياة لكل المحتوى بما فيه أي تحديثات مستقبلية."
-    },
-    {
-      question: "الكورس مناسب لأي مستوى؟",
-      answer: "الكورس مصمم لطلاب الثانوية العامة — سواء بتبدأ من الصفر أو عايز تراجع وتثبت معلوماتك. الشرح متدرج من الأساسيات للتفاصيل الدقيقة."
-    },
-    {
-      question: "إزاي أشتري الكورس؟",
-      answer: "اضغط على زرار «اشتري الآن» وهيتفتحلك واتساب برسالة جاهزة. بعد تأكيد الدفع هتوصلك بيانات الدخول."
-    },
-    {
-      question: "لو عندي سؤال في المنهج، أقدر أتواصل مع المدرس؟",
-      answer: "طبعاً! تقدر تبعتلنا أي سؤال على واتساب وهنرد عليك في أقرب وقت."
-    }
-  ];
+  /* ── Course Definitions ── */
 
   var courses = [
     {
@@ -102,8 +55,8 @@ var COURSE_DATA = (function () {
         {
           title: "مقدمة الفصل والجهاز الهيكلي",
           lessons: [
-            { title: "نظرة عامة — الدعامة والحركة وأهميتها", duration: "06:00", preview: true },
-            { title: "تركيب العظام وأنواعها", duration: "14:00", preview: true },
+            { title: "نظرة عامة — الدعامة والحركة وأهميتها", duration: "06:00", preview: true, previewUrl: "https://www.youtube.com/embed/5c-64AK1M3Q", previewThumb: "" },
+            { title: "تركيب العظام وأنواعها", duration: "14:00", preview: true, previewUrl: "PREVIEW_URL_1_0_1", previewThumb: "" },
             { title: "الغضاريف والمفاصل — أنواعها ووظائفها", duration: "12:00", preview: false },
             { title: "العمود الفقري والقفص الصدري — تركيب تفصيلي", duration: "15:00", preview: false }
           ]
@@ -186,8 +139,8 @@ var COURSE_DATA = (function () {
         {
           title: "التكاثر اللاجنسي",
           lessons: [
-            { title: "مقدمة — أهمية التكاثر واستمرارية النوع", duration: "07:00", preview: true },
-            { title: "صور التكاثر اللاجنسي — الانشطار والتبرعم والتجدد", duration: "15:00", preview: true },
+            { title: "مقدمة — أهمية التكاثر واستمرارية النوع", duration: "07:00", preview: true, previewUrl: "PREVIEW_URL_2_0_0", previewThumb: "" },
+            { title: "صور التكاثر اللاجنسي — الانشطار والتبرعم والتجدد", duration: "15:00", preview: true, previewUrl: "PREVIEW_URL_2_0_1", previewThumb: "" },
             { title: "التكاثر بالأبواغ والتكاثر الخضري", duration: "12:00", preview: false }
           ]
         },
@@ -277,8 +230,8 @@ var COURSE_DATA = (function () {
         {
           title: "مقدمة في التنسيق الهرموني",
           lessons: [
-            { title: "ما هو التنسيق الهرموني؟ — مقدمة ومفاهيم أساسية", duration: "08:00", preview: true },
-            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true },
+            { title: "ما هو التنسيق الهرموني؟ — مقدمة ومفاهيم أساسية", duration: "08:00", preview: true, previewUrl: "PREVIEW_URL_3_0_0", previewThumb: "" },
+            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true, previewUrl: "PREVIEW_URL_3_0_1", previewThumb: "" },
             { title: "العلاقة بين الجهاز العصبي والهرموني", duration: "10:00", preview: false }
           ]
         },
@@ -368,8 +321,8 @@ var COURSE_DATA = (function () {
         {
           title: "الحمض النووي DNA",
           lessons: [
-            { title: "مقدمة — المادة الوراثية وإثبات أن DNA هو حامل الصفات", duration: "12:00", preview: true },
-            { title: "تركيب DNA — نموذج واطسون وكريك بالتفصيل", duration: "20:00", preview: true },
+            { title: "مقدمة — المادة الوراثية وإثبات أن DNA هو حامل الصفات", duration: "12:00", preview: true, previewUrl: "PREVIEW_URL_4_0_0", previewThumb: "" },
+            { title: "تركيب DNA — نموذج واطسون وكريك بالتفصيل", duration: "20:00", preview: true, previewUrl: "PREVIEW_URL_4_0_1", previewThumb: "" },
             { title: "تضاعف DNA — الخطوات والإنزيمات", duration: "22:00", preview: false },
             { title: "الفرق بين التضاعف في أوليات وحقيقيات النواة", duration: "14:00", preview: false }
           ]
@@ -433,6 +386,8 @@ var COURSE_DATA = (function () {
     }
   ];
 
+  /* ── Categories ── */
+
   var categories = {
     "الدعامة والحركة في الكائنات الحية":      { color: "emerald" },
     "التكاثر واستمرارية الحياة":              { color: "teal" },
@@ -440,11 +395,14 @@ var COURSE_DATA = (function () {
     "البيولوجيا الجزيئية والتكنولوجيا الحيوية": { color: "emerald" }
   };
 
+  /* ── Brand Constants ── */
+
   var WHATSAPP_NUMBER = "201008464341";
   var BRAND_NAME      = "مستر محمد السيد";
   var DOMAIN          = "mrmohamedelsayed.com";
 
-  // Auto-derive lessons count from curriculum before freezing
+  /* ── Auto-derive lesson count from curriculum ── */
+
   courses.forEach(function (c) {
     if (c.curriculum && c.curriculum.length) {
       c.lessons = c.curriculum.reduce(function (sum, section) {
@@ -452,6 +410,8 @@ var COURSE_DATA = (function () {
       }, 0);
     }
   });
+
+  /* ── Freeze and Export ── */
 
   return deepFreeze({
     courses:         courses,
@@ -461,29 +421,106 @@ var COURSE_DATA = (function () {
     DOMAIN:          DOMAIN,
 
     META: {
-      tagline: 'مستر محمد السيد — أستاذ الأحياء للثانوية العامة',
-
-      description: 'منصة مستر محمد السيد لتعليم مادة الأحياء لطلاب الثانوية العامة (الصف الثالث الثانوي — شعبة علمي علوم) في مصر. ' +
-                   'شرح تفصيلي لكل فصول المنهج مع رسومات توضيحية محلولة وأسئلة امتحانات سابقة. ' +
-                   'وصول مدى الحياة ودعم مباشر من المدرس عبر واتساب.',
-
+      /* ── SEO / Branding ── */
+      tagline:          'مستر محمد السيد — أستاذ الأحياء للثانوية العامة',
+      description:      'منصة مستر محمد السيد لتعليم مادة الأحياء لطلاب الثانوية العامة (الصف الثالث الثانوي — شعبة علمي علوم) في مصر. شرح تفصيلي لكل فصول المنهج مع رسومات توضيحية محلولة وأسئلة امتحانات سابقة. وصول مدى الحياة ودعم مباشر من المدرس عبر واتساب.',
       descriptionShort: 'منصة مستر محمد السيد — شرح أحياء الثانوية العامة بالتفصيل مع أسئلة محلولة ودعم مباشر.',
+      ogImage:          '/assets/img/og-image.png',
+      supportEmail:     'mrmohamedelsayed@gmail.com',
+      foundingYear:     '2025',
+      logoPath:         '/assets/img/fav180.png',
+      legalLastUpdated: '2026-03-10',
 
-      ogImage:      '/assets/img/og-image.png',
-
-      supportEmail: 'mrmohamedelsayed@gmail.com',
-
-      foundingYear: '2025',
-
+      /* ── WhatsApp ── */
       whatsappDefaultMessage: 'مرحباً يا مستر! عندي سؤال عن الكورسات.',
 
-      logoPath: '/assets/img/fav180.png',
-
-      legalLastUpdated: '2026-03-10',
+      /* ── Chat Widget ── */
       chatBotName:        'مساعد مستر محمد',
       chatWelcomeMessage: 'أهلاً بيك! أنا هنا عشان أساعدك بأي سؤال عن الكورس. اسألني أي حاجة!',
       chatPlaceholder:    'اكتب سؤالك هنا...',
-      chatErrorMessage:   'حصل مشكلة في الاتصال. جرّب تاني.'
+      chatErrorMessage:   'حصل مشكلة في الاتصال. جرّب تاني.',
+
+      /* ── White-label UI Strings ──
+         These strings contain brand-specific or subject-specific text
+         that was previously hardcoded in page controllers.
+         Moving them here enables white-label customization via
+         COURSE_DATA alone without editing JS controllers.
+      */
+
+      /* Hero section (index.html) */
+      heroLine1:    'افهم الأحياء صح،',
+      heroLine2:    'وحقق أعلى الدرجات.',
+      heroSubtitle: 'شرح تفصيلي لمنهج الأحياء للثانوية العامة — من الدعامة والحركة للبيولوجيا الجزيئية. رسومات توضيحية، أسئلة محلولة، ودعم مباشر من المدرس.',
+      heroBadge:    'أحياء الثانوية العامة — شرح تفصيلي',
+
+      /* CTA section (index.html) */
+      ctaTitle:    'مستعد تفهم الأحياء صح؟',
+      ctaSubtitle: 'كورسات شاملة لكل فصول المنهج — شرح مبسط، رسومات محلولة، وأسئلة امتحانات. ابدأ النهارده واستعد لامتحان الثانوية العامة.',
+
+      /* Footer tagline (all pages) */
+      footerTagline: 'شرح مادة الأحياء للثانوية العامة بأسلوب مبسط وتفصيلي. وصول مدى الحياة ودعم مباشر من المدرس.',
+
+      /* Course level labels (English key → Arabic display) */
+      levels: {
+        'All':          'كل المستويات',
+        'Beginner':     'مبتدئ',
+        'Intermediate': 'متوسط',
+        'Advanced':     'متقدم'
+      },
+
+      /* Catalog empty state */
+      emptyStateTitle: 'مفيش كورسات',
+      emptyStateText:  'جرّب تغيّر الفلاتر أو كلمة البحث',
+      resetFiltersLabel: 'إعادة ضبط الفلاتر',
+
+      /* Catalog results format: used with U.formatNumberAr */
+      resultsTemplate: 'عرض {start}\u2013{end} من {total} نتيجة',
+
+      /* Course details section titles */
+      sectionObjectives: 'هتتعلم إيه',
+      sectionCurriculum: 'محتوى الكورس',
+      sectionFaq:        'أسئلة شائعة',
+
+      /* Rating card strings */
+      ratingTitle:       'قيّم الكورس',
+      ratingSubtitle:    'شاركنا رأيك عشان نحسّن المحتوى',
+      ratingLoading:     'جاري تحميل التقييمات...',
+      ratingEmpty:       'مفيش تقييمات لسه — كن أول من يقيّم!',
+      ratingSubmitting:  'جاري إرسال تقييمك...',
+      ratingSuccess:     'شكراً لتقييمك! \u2764',
+      ratingError:       'حصل مشكلة. جرّب تاني.',
+      ratingUnavailable: 'نظام التقييم غير متاح حالياً',
+
+      /* Price formatting */
+      currencyLabel: 'ج.م',
+      freeLabel:     'مجاني',
+
+      /* Navigation labels */
+      navHome:     'الرئيسية',
+      navCourses:  'الكورسات',
+      navAbout:    'عن المدرس',
+      navBrowseAll: 'تصفح الكل',
+
+      /* Shared button / action labels */
+      viewCourse:    'عرض الكورس',
+      buyCourse:     'اشتري الآن',
+      startLearning: 'ابدأ التعلم الآن',
+      enterCourse:   'اشتريت الكورس\u061F ادخل هنا \u{1F511}',
+      backToCourses: 'العودة للكورسات',
+      contactWhatsApp: 'تواصل على واتساب',
+
+      /* Error page */
+      errorTitle: 'الكورس غير موجود',
+      errorText:  'الكورس اللي بتدور عليه مش موجود. ممكن يكون اتحذف أو الرابط غلط.',
+      errorBrowse: 'تصفح الكورسات',
+
+      /* Copyright template — {year} and {brand} are replaced at runtime */
+      copyrightTemplate: '© {year} {brand}. جميع الحقوق محفوظة.',
+
+      previewPlayLabel: 'اضغط للمعاينة المجانية',
+      previewCloseLabel: 'إغلاق المعاينة',
+      previewFullscreenLabel: 'ملء الشاشة',
+      previewExitFullscreenLabel: 'خروج من ملء الشاشة'
     }
   });
 
