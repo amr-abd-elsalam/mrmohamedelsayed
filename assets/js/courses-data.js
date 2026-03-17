@@ -231,7 +231,7 @@ var COURSE_DATA = (function () {
           title: "مقدمة في التنسيق الهرموني",
           lessons: [
             { title: "ما هو التنسيق الهرموني؟ — مقدمة ومفاهيم أساسية", duration: "08:00", preview: true, previewUrl: "https://www.youtube.com/embed/z2CRb1AYdwI", previewThumb: "" },
-            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true, previewUrl: "https://www.youtube.com/watch?v=QmMZFMdai-g", previewThumb: "" },
+            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true, previewUrl: "https://www.youtube.com/embed/QmMZFMdai-g", previewThumb: "" },
             { title: "العلاقة بين الجهاز العصبي والهرموني", duration: "10:00", preview: false }
           ]
         },
