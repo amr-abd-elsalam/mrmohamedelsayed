@@ -56,7 +56,7 @@ var COURSE_DATA = (function () {
           title: "مقدمة الفصل والجهاز الهيكلي",
           lessons: [
             { title: "نظرة عامة — الدعامة والحركة وأهميتها", duration: "06:00", preview: true, previewUrl: "https://www.youtube.com/embed/r0cuXOQFdF8", previewThumb: "" },
-            { title: "تركيب العظام وأنواعها", duration: "14:00", preview: true, previewUrl: "PREVIEW_URL_1_0_1", previewThumb: "" },
+            { title: "تركيب العظام وأنواعها", duration: "14:00", preview: true, previewUrl: "https://www.youtube.com/embed/WHhK-gu07A4", previewThumb: "" },
             { title: "الغضاريف والمفاصل — أنواعها ووظائفها", duration: "12:00", preview: false },
             { title: "العمود الفقري والقفص الصدري — تركيب تفصيلي", duration: "15:00", preview: false }
           ]
@@ -139,8 +139,8 @@ var COURSE_DATA = (function () {
         {
           title: "التكاثر اللاجنسي",
           lessons: [
-            { title: "مقدمة — أهمية التكاثر واستمرارية النوع", duration: "07:00", preview: true, previewUrl: "PREVIEW_URL_2_0_0", previewThumb: "" },
-            { title: "صور التكاثر اللاجنسي — الانشطار والتبرعم والتجدد", duration: "15:00", preview: true, previewUrl: "PREVIEW_URL_2_0_1", previewThumb: "" },
+            { title: "مقدمة — أهمية التكاثر واستمرارية النوع", duration: "07:00", preview: true, previewUrl: "https://www.youtube.com/embed/-8_uHf16TIk", previewThumb: "" },
+            { title: "صور التكاثر اللاجنسي — الانشطار والتبرعم والتجدد", duration: "15:00", preview: true, previewUrl: "https://www.youtube.com/embed/2_shSnYAJig", previewThumb: "" },
             { title: "التكاثر بالأبواغ والتكاثر الخضري", duration: "12:00", preview: false }
           ]
         },
@@ -230,8 +230,8 @@ var COURSE_DATA = (function () {
         {
           title: "مقدمة في التنسيق الهرموني",
           lessons: [
-            { title: "ما هو التنسيق الهرموني؟ — مقدمة ومفاهيم أساسية", duration: "08:00", preview: true, previewUrl: "PREVIEW_URL_3_0_0", previewThumb: "" },
-            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true, previewUrl: "PREVIEW_URL_3_0_1", previewThumb: "" },
+            { title: "ما هو التنسيق الهرموني؟ — مقدمة ومفاهيم أساسية", duration: "08:00", preview: true, previewUrl: "https://www.youtube.com/embed/z2CRb1AYdwI", previewThumb: "" },
+            { title: "أنواع الغدد — صماء وقنوية ومشتركة", duration: "12:00", preview: true, previewUrl: "https://www.youtube.com/watch?v=QmMZFMdai-g", previewThumb: "" },
             { title: "العلاقة بين الجهاز العصبي والهرموني", duration: "10:00", preview: false }
           ]
         },
